@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+    node-server:
+        container_name: server
+        build:
+            context: ./server
+        volumes:
+            - ./server:/home/blacktab
+            - /home/blacktab/node_modules
+        tty: true
+        ports:
+            - "3000:3000"
+        depends_on:
+            - mongo
+
+    node-tester:
+        container_name: tester
+        build:
+            context: ./server
+        volumes:
+            - ./server:/home/blacktab
+            - /home/blacktab/node_modules
+        environment:
+            - NODE_ENV=test
+            - PORT=3003
+        tty: true
+        ports:
+            - "3003:3003"
+        depends_on:
+            - mongo
+            - node-server
+        entrypoint: ["npm", "test"]
+
+
+    mongo:
+        container_name: database
+        image: mongo
+        volumes:
+            - ./server/data/db:/data/db
+        ports:
+            - "27017:27017"
+
+networks:
+    local-network:
+        driver: bridge

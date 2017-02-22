@@ -1,0 +1,15 @@
+{
+  "name": "sfdc-sandbox-server",
+  "version": "0.1.0",
+  "description": "A node server for an sfdc sandbox",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'server started'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Jones",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
