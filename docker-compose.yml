@@ -8,6 +8,8 @@ services:
         volumes:
             - ./server:/home/blacktab
             - /home/blacktab/node_modules
+        environment:
+            - DEBUG=sfdc:server
         tty: true
         ports:
             - "3000:3000"

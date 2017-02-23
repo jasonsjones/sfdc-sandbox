@@ -4,8 +4,9 @@
   "description": "A node server for an sfdc sandbox",
   "main": "index.js",
   "scripts": {
-    "start": "echo 'server started'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "lint": "eslint src/**/*.js",
+    "test": "mocha src/**/*.test.js"
   },
   "author": "Jason Jones",
   "repository": {
@@ -14,6 +15,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "express": "^4.14.1"
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.4",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "chai": "^3.5.0",
+    "debug": "^2.6.1",
+    "eslint": "^3.16.1",
+    "mocha": "^3.2.0"
   }
 }
