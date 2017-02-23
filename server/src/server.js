@@ -1,6 +1,8 @@
 const debug = require('debug')('sfdc:server');
 
-(() => {
-    let port = 3000;
-    debug(`server started on port ${port}`);
-})();
+import config from './config/config';
+import app from './config/app';
+
+app.listen(config.port, () => {
+    debug(`Node server running in container on port ${config.port}`);
+})
