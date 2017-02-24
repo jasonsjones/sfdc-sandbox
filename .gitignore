@@ -1,3 +1,6 @@
 */node_modules/
 npm-debug.log
 server/data/*
+*/.babel.json
+*/.v8flags*
+*/.config/
