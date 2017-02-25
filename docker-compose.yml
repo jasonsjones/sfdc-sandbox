@@ -30,10 +30,9 @@ services:
         ports:
             - "3003:3003"
         depends_on:
-            - mongo
             - node-server
-        entrypoint: ["npm", "test"]
-
+            - mongo
+        entrypoint: ["npm", "run", "test:watch"]
 
     mongo:
         container_name: database
