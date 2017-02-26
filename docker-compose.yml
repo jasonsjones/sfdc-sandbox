@@ -16,24 +16,6 @@ services:
         depends_on:
             - mongo
 
-    node-tester:
-        container_name: tester
-        build:
-            context: ./server
-        volumes:
-            - ./server:/home/blacktab
-            - /home/blacktab/node_modules
-        environment:
-            - NODE_ENV=test
-            - PORT=3003
-        tty: true
-        ports:
-            - "3003:3003"
-        depends_on:
-            - node-server
-            - mongo
-        entrypoint: ["npm", "run", "test:watch"]
-
     mongo:
         container_name: database
         image: mongo
