@@ -4,3 +4,4 @@ server/data/*
 */.babel.json
 */.v8flags*
 */.config/
+*/dist
