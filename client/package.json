@@ -1,0 +1,40 @@
+{
+  "name": "sfdc-sandbox-client",
+  "version": "0.1.0",
+  "description": "Angular front end client for SFDC sandbox",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "webpack --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsjones/sfdc-sandbox.git"
+  },
+  "author": "Jason Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonsjones/sfdc-sandbox/issues"
+  },
+  "homepage": "https://github.com/jasonsjones/sfdc-sandbox#readme",
+  "dependencies": {
+    "@angular/common": "^2.4.8",
+    "@angular/compiler": "^2.4.8",
+    "@angular/core": "^2.4.8",
+    "@angular/http": "^2.4.8",
+    "@angular/platform-browser": "^2.4.8",
+    "@angular/platform-browser-dynamic": "^2.4.8",
+    "@angular/router": "^3.4.8",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.2.0",
+    "zone.js": "^0.7.7"
+  },
+  "devDependencies": {
+    "@types/core-js": "^0.9.35",
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1"
+  }
+}

@@ -5,3 +5,4 @@ server/data/*
 */.v8flags*
 */.config/
 */dist
+*/.DS_Store
