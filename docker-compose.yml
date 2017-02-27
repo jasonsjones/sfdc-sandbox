@@ -15,6 +15,19 @@ services:
             - "3000:3000"
         depends_on:
             - mongo
+            
+    angular:
+        container_name: angular
+        build:
+            context: ./client
+        volumes:
+            - ./client:/home/angular
+            - /home/angular/node_modules
+        tty: true
+        ports:
+            - "4200:4200"
+        depends_on:
+            - node-server
 
     mongo:
         container_name: database
