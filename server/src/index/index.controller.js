@@ -1,3 +1,9 @@
-export function getIndex(req, res) {
-    res.json({message: 'Welcome to the SFDC Sandbox!'});
+import * as IndexDataService from './index.dataservice';
+
+export function getIndex(req, res, next) {
+    IndexDataService.getWelcomeMessage()
+        .then(message => {
+            res.json(message);
+            next();
+        });
 }
