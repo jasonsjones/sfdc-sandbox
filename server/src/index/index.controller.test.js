@@ -4,7 +4,7 @@ import * as IndexController from './index.controller';
 
 const expect = chai.expect;
 
-describe('Index controller', () => {
+describe('Index Controller', () => {
     let res = {};
     beforeEach(() => {
         res.json = sinon.spy()
