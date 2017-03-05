@@ -4,7 +4,7 @@
   "description": "A node server for an sfdc sandbox",
   "main": "index.js",
   "scripts": {
-    "start": "npm run nodemon",
+    "start": "npm-run-all --parallel nodemon test:watch",
     "nodemon": "nodemon src/server.js --exec babel-node",
     "lint": "eslint src/**/*.js",
     "test": "mocha src/**/*.test.js --compilers js:babel-register",

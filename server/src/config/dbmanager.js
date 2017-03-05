@@ -1,9 +1,14 @@
 import mongoose from 'mongoose';
+import config from './config';
 
-export default function (config) {
+export default function () {
 
-    let devConnection = mongoose.createConnection('mongodb://' + config.db.host + '/' + config.db.name);
-    initHandlers(devConnection);
+    let na44 = mongoose.createConnection('mongodb://' + config.db.host + '/' + config.db.dev.name);
+    initHandlers(na44);
+
+    return {
+        na44: na44
+    }
 }
 
 function initHandlers(conn) {
