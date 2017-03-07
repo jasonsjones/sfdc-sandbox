@@ -17,14 +17,13 @@ describe('Index Controller', () => {
         });
     });
 
-    it('getIndex() calls res.json() with message', (done) => {
-        let resObj = {message: 'Welcome to the SFDC Sandbox!'};
-
+    it('getIndex() calls res.json() with object', (done) => {
         IndexController.getIndex(null, res, () => {
+            let resObject = res.json.args[0][0];
             expect(res.json.calledOnce).to.be.true;
-            expect(res.json.calledWith(resObj)).to.be.true;
+            expect(resObject).to.have.property('message');
+            expect(resObject).to.have.property('version');
             done();
         });
-
     });
 });
