@@ -7,6 +7,7 @@ export default function () {
 
     let na44 = mongoose.createConnection('mongodb://' + config.db.host + '/' + config.db.dev.name);
     initHandlers(na44);
+    initProcessHandlers(na44);
 
     return {
         na44: na44
