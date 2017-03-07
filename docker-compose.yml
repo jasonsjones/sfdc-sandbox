@@ -15,7 +15,25 @@ services:
             - "3000:3000"
         depends_on:
             - mongo
-            
+
+    node-tester:
+        container_name: tester
+        build:
+            context: ./server
+        volumes:
+            - ./server:/home/blacktab
+            - /home/blacktab/node_modules
+        environment:
+            - DEBUG=sfdc:server
+            - ENV=test
+            - PORT=3003
+        tty: true
+        ports:
+            - "3003:3003"
+        depends_on:
+            - mongo
+        command: ["npm", "run", "test:watch"]
+
     angular:
         container_name: angular
         build:
