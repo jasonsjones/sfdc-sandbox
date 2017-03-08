@@ -20,9 +20,8 @@ services:
         container_name: tester
         build:
             context: ./server
-        volumes:
-            - ./server:/home/blacktab
-            - /home/blacktab/node_modules
+        volumes_from:
+            - node-server
         environment:
             - DEBUG=sfdc:server
             - ENV=test
