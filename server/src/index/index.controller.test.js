@@ -21,8 +21,8 @@ describe('Index Controller', () => {
         IndexController.getIndex(null, res, () => {
             let resObject = res.json.args[0][0];
             expect(res.json.calledOnce).to.be.true;
-            expect(resObject).to.have.property('message');
-            expect(resObject).to.have.property('version');
+            expect(resObject).to.have.property('message').that.is.a('string');
+            expect(resObject).to.have.property('version').that.is.a('number');
             done();
         });
     });
