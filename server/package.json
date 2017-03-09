@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run nodemon",
-    "nodemon": "nodemon src/server.js --exec babel-node",
+    "nodemon": "nodemon src/server.js --watch src/ --exec babel-node",
     "lint": "eslint src/**/*.js",
     "test": "mocha src/**/*.test.js --compilers js:babel-register",
     "test:watch": "npm run test -- --watch"
