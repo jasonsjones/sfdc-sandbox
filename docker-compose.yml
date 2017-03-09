@@ -23,7 +23,7 @@ services:
         volumes_from:
             - node-server
         environment:
-            - DEBUG=sfdc:server
+            - DEBUG=sfdc:dbmanager
             - ENV=test
             - PORT=3003
         tty: true
