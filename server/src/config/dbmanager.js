@@ -7,11 +7,24 @@ export default function () {
 
     mongoose.Promise = global.Promise;
 
-    let na44 = mongoose.createConnection('mongodb://' + config.db.host + '/' + config.db.dev.name);
+    let na44ConnUrl = `mongodb://${config.db.host}/${config.db.dev.name}`;
+    let devmainConnUrl = `mongodb://${config.db.host}/${config.db.test.name}`;
+
+    let na44 = mongoose.createConnection(na44ConnUrl);
+    let devmain = mongoose.createConnection(devmainConnUrl);
+
     initHandlers(na44, 'na44');
+    initHandlers(devmain, 'devmain');
 
     return {
-        na44: na44
+        dev: {
+            connectionUrl: na44ConnUrl,
+            connection: na44
+        },
+        test: {
+            connectionUrl: devmainConnUrl,
+            connection: devmain
+        }
     }
 }
 
