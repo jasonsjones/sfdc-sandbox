@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-app',
     template: `
-        <global-header></global-header>
-        <p class="slds-text-heading--large">SFDC Sandbox</p>
+        <div class="slds-grid slds-grid--frame">
+            <global-header></global-header>
+        </div>
     `
 })
 export class AppComponent { }
