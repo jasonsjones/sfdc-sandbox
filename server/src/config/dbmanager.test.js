@@ -7,10 +7,10 @@ const dbManager = DBManager();
 describe('Database Manager', () => {
 
     it('has a na44 property', () => {
-        expect(dbManager.dev.connection).to.exist;
+        expect(dbManager.getDevConnection()).to.exist;
     });
 
     it('has a devmain property', () => {
-        expect(dbManager.test.connection).to.exist;
+        expect(dbManager.getTestConnection()).to.exist;
     });
 });

@@ -6,24 +6,37 @@ import config from './config';
 export default function () {
 
     mongoose.Promise = global.Promise;
+    let na44;
+    let devmain;
 
-    let na44ConnUrl = `mongodb://${config.db.host}/${config.db.dev.name}`;
-    let devmainConnUrl = `mongodb://${config.db.host}/${config.db.test.name}`;
-
-    let na44 = mongoose.createConnection(na44ConnUrl);
-    let devmain = mongoose.createConnection(devmainConnUrl);
-
-    initHandlers(na44, 'na44');
-    initHandlers(devmain, 'devmain');
+    function createConnection(name) {
+        if (name === 'dev') {
+            debug(`**** creating db connection to ${config.db.dev.name}`);
+            let na44ConnUrl = `mongodb://${config.db.host}/${config.db.dev.name}`;
+            let devConn = mongoose.createConnection(na44ConnUrl);
+            initHandlers(devConn, 'na44');
+            return devConn;
+        } else if (name === 'test') {
+            debug(`**** creating db connection to ${config.db.test.name}`);
+            let devmainConnUrl = `mongodb://${config.db.host}/${config.db.test.name}`;
+            let testConn = mongoose.createConnection(devmainConnUrl);
+            initHandlers(testConn, 'devmain');
+            return testConn;
+        }
+    }
 
     return {
-        dev: {
-            connectionUrl: na44ConnUrl,
-            connection: na44
+        getDevConnection: function () {
+            if (!na44) {
+                na44 = createConnection('dev');
+            }
+            return na44;
         },
-        test: {
-            connectionUrl: devmainConnUrl,
-            connection: devmain
+        getTestConnection: function () {
+            if (!devmain) {
+                devmain = createConnection('test');
+            }
+            return devmain;
         }
     }
 }
