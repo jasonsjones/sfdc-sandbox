@@ -9,7 +9,7 @@ services:
             - ./server:/home/blacktab
             - /home/blacktab/node_modules
         environment:
-            - DEBUG=sfdc:server
+            - DEBUG=sfdc:*
         tty: true
         ports:
             - "3000:3000"
@@ -23,7 +23,6 @@ services:
         volumes_from:
             - node-server
         environment:
-            - DEBUG=sfdc:dbmanager
             - ENV=test
             - PORT=3003
         tty: true
