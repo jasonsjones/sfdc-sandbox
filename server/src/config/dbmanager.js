@@ -36,16 +36,15 @@ function initHandlers(conn, dbname) {
     conn.on('disconnected', () => {
         debug(`Mongoose disconnected from ${dbname}`);
     });
-    initProcessHandlers(conn);
+    initProcessHandlers(conn, dbname);
 }
 
-function initProcessHandlers(conn) {
-    debug('*** removing all listeners from SIGINT and SIGUSR2')
+function initProcessHandlers(conn, dbname) {
+    debug(`*** removing all listeners for SIGINT and SIGUSR2 from ${dbname}`);
     process.removeAllListeners('SIGINT').removeAllListeners('SIGUSR2');
 
-    debug('*** adding listeners from SIGINT and SIGUSR2');
-    process.on('SIGUSR2', () => {
-        console.log('*** in the SIGUSR2 callback; node restarting...');
+    debug(`*** adding listeners for SIGINT and SIGUSR2 on ${dbname}`);
+    process.once('SIGUSR2', () => {
         gracefulShutdown('nodemon restart', conn, () => {
             process.kill(process.pid, 'SIGUSR2');
         });
@@ -56,12 +55,12 @@ function initProcessHandlers(conn) {
             process.exit(0);
         });
     });
-    debug('*** adding listeners complete...');
+    debug(`*** listeners added on ${dbname}`);
 }
 
-function gracefulShutdown(msg, conn, callback) {
-    conn.close(() => {
+function gracefulShutdown(msg, connection, callback) {
+    connection.close(function () {
         debug(`Mongoose disconnected through ${msg}`);
         callback();
-    })
+    });
 }
