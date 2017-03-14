@@ -1,12 +1,19 @@
 import { User } from './user.model';
 
+let UserModel = User;
+
+function setModel(model, modelName) {
+    console.log(`**** switching to ${modelName}`);
+    UserModel = model;
+}
+
 function getAllUsers(req, res, next) {
-    User.find({}, '-local.password', function (err, users) {
+    UserModel.find({}, '-local.password', function (err, users) {
         if (err) {
             res.status(500).send(err);
             next(err);
         } else if (users) {
-            res.json({success: true, users: users});
+            res.json({success: true, payload: users});
         } else {
             res.json({success: false, msg: 'No users in database'});
         }
@@ -17,7 +24,7 @@ function getAllUsers(req, res, next) {
 function addUser(req, res, next) {
     // TODO: need to check if there is already a user created with the
     // username provided
-    var newUser = new User(req.body);
+    var newUser = new UserModel(req.body);
 
     newUser.save(function (err, user) {
         if (err) {
@@ -26,10 +33,10 @@ function addUser(req, res, next) {
         }
         res.status(201).json({
             success: true,
-            user: user
+            payload: user
         });
         next();
     });
 }
 
-export { addUser, getAllUsers }
+export { addUser, getAllUsers, setModel }
