@@ -8,7 +8,7 @@ import { UserController } from './user.controller';
 
 const expect = chai.expect;
 
-describe('User Controller', () => {
+describe.skip('User Controller', () => {
     let req
     let res
 
