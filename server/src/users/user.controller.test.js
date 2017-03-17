@@ -4,11 +4,11 @@ import 'sinon-mongoose';
 import 'sinon-as-promised';
 
 import { User } from './user.model';
-import { UserController } from './user.controller';
+import * as UserController from './user.controller';
 
 const expect = chai.expect;
 
-describe.skip('User Controller', () => {
+describe('User Controller', () => {
     let req
     let res
 
@@ -35,6 +35,17 @@ describe.skip('User Controller', () => {
             UserController.getUsers(req, res, function () {
                 UserMock.verify();
                 expect(res.json.calledOnce).to.be.true;
+                done();
+            });
+        });
+
+        it('calls res.json() with response obj', (done) => {
+            let resObj = {success: true, payload: []};
+
+            UserController.getUsers(req, res, function () {
+                UserMock.verify();
+                expect(res.json.calledOnce).to.be.true;
+                expect(res.json.calledWith(resObj)).to.be.true;
                 done();
             });
         });

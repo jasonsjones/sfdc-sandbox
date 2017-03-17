@@ -3,22 +3,22 @@ import { User } from './user.model';
 let UserModel = User;
 
 function setModel(model, modelName) {
-    console.log(`**** switching to ${modelName}`);
+    console.log(`**** switching user model to ${modelName}`);
     UserModel = model;
 }
 
-function getAllUsers(req, res, next) {
-    UserModel.find({}, '-local.password', function (err, users) {
-        if (err) {
-            res.status(500).send(err);
+function getUsers(req, res, next) {
+    UserModel.find({}).exec()
+        .then(users => {
+            res.json({
+                success: true,
+                payload: users
+            });
+            next();
+        })
+        .catch(err => {
             next(err);
-        } else if (users) {
-            res.json({success: true, payload: users});
-        } else {
-            res.json({success: false, msg: 'No users in database'});
-        }
-        next();
-    });
+        });
 }
 
 function addUser(req, res, next) {
@@ -26,17 +26,18 @@ function addUser(req, res, next) {
     // username provided
     var newUser = new UserModel(req.body);
 
-    newUser.save(function (err, user) {
-        if (err) {
+    newUser.save()
+        .then(user => {
+            res.status(201).json({
+                success: true,
+                payload: user
+            });
+            next();
+        })
+        .catch(err => {
             res.status(500).send(err);
             next(err);
-        }
-        res.status(201).json({
-            success: true,
-            payload: user
         });
-        next();
-    });
 }
 
-export { addUser, getAllUsers, setModel }
+export { addUser, getUsers, setModel }
