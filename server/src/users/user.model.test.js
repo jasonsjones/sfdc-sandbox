@@ -1,8 +1,10 @@
 import chai from 'chai';
 
 import { TestUser as User } from './user.model';
+import factory from './user.datafactory';
 
 const expect = chai.expect;
+const userFactory = factory();
 
 describe('User Model', () => {
 
@@ -11,17 +13,10 @@ describe('User Model', () => {
         let mockUserData, mockUser, savedUser, error;
 
         before((done) => {
-            mockUserData = {
-                name: {
-                    firstName: 'Oliver',
-                    lastName: 'Queen'
-                },
-                email: 'oliver@queenconsolidated.com',
-                local: {
-                    username: 'arrow',
-                    password: 'p@ssw0rd'
-                }
-            };
+            mockUserData = userFactory.getUsers()[0];
+            delete mockUserData.createdDate;
+            delete mockUserData.admin;
+
             mockUser = new User(mockUserData);
             mockUser.save(function (err, user) {
                 error = err;
