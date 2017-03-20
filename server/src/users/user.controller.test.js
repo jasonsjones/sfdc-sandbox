@@ -1,10 +1,9 @@
 import  chai from 'chai';
 import  sinon from 'sinon';
-import 'sinon-mongoose';
 import 'sinon-as-promised';
 
-import { User } from './user.model';
 import * as UserController from './user.controller';
+import * as UserDataservice from './user.dataservice';
 
 const expect = chai.expect;
 
@@ -20,30 +19,28 @@ describe('User Controller', () => {
     });
 
     describe('getUsers()', () => {
-       let UserMock;
+       let stub;
         beforeEach(() => {
-            UserMock = sinon.mock(User);
-            UserMock.expects('find').withArgs({})
-                .chain('exec')
-                .resolves([]);
+            stub = sinon.stub(UserDataservice, "getUsers");
         });
+
         afterEach(() => {
-            UserMock.restore();
+            stub.restore();
         });
 
         it('calls res.json()', (done) => {
+            stub.resolves([]);
             UserController.getUsers(req, res, function () {
-                UserMock.verify();
                 expect(res.json.calledOnce).to.be.true;
                 done();
             });
         });
 
         it('calls res.json() with response obj', (done) => {
+            stub.resolves([]);
             let resObj = {success: true, payload: []};
 
             UserController.getUsers(req, res, function () {
-                UserMock.verify();
                 expect(res.json.calledOnce).to.be.true;
                 expect(res.json.calledWith(resObj)).to.be.true;
                 done();

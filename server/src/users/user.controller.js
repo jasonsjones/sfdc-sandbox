@@ -1,4 +1,5 @@
 import { User } from './user.model';
+import * as UserDataService from './user.dataservice';
 
 let UserModel = User;
 
@@ -8,7 +9,7 @@ function setModel(model, modelName) {
 }
 
 function getUsers(req, res, next) {
-    UserModel.find({}).exec()
+    UserDataService.getUsers()
         .then(users => {
             res.json({
                 success: true,
