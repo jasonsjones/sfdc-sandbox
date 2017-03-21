@@ -1,12 +1,4 @@
-import { User } from './user.model';
 import * as UserDataService from './user.dataservice';
-
-let UserModel = User;
-
-function setModel(model, modelName) {
-    console.log(`**** switching user model to ${modelName}`);
-    UserModel = model;
-}
 
 function getUsers(req, res, next) {
     UserDataService.getUsers()
@@ -25,9 +17,8 @@ function getUsers(req, res, next) {
 function addUser(req, res, next) {
     // TODO: need to check if there is already a user created with the
     // username provided
-    var newUser = new UserModel(req.body);
 
-    newUser.save()
+    UserDataService.addUser(req.body)
         .then(user => {
             res.status(201).json({
                 success: true,
@@ -41,4 +32,4 @@ function addUser(req, res, next) {
         });
 }
 
-export { addUser, getUsers, setModel }
+export { addUser, getUsers }
