@@ -32,6 +32,7 @@ describe('User Data Factory', () => {
             expect(user).to.have.property('_id');
             expect(user).to.have.property('__v');
             expect(user).to.have.property('name');
+            expect(user.name).to.have.property('full');
             expect(user).to.have.property('local');
             expect(user).to.have.property('email');
             expect(user).to.have.property('admin');
