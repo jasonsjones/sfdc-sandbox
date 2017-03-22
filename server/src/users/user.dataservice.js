@@ -1,8 +1,15 @@
 import { User } from './user.model';
 
+let UserModel = User;
+
+function setModel(model, modelName) {
+    console.log(`**** switching user model to ${modelName}`);
+    UserModel = model;
+}
+
 function getUsers() {
     return new Promise(function (resolve, reject) {
-        User.find({}).exec()
+        UserModel.find({}).exec()
             .then(users => {
                 resolve(users);
             })
@@ -12,4 +19,18 @@ function getUsers() {
     });
 }
 
-export { getUsers }
+function addUser(user) {
+    let newUser = new UserModel(user);
+    return new Promise(function (resolve, reject) {
+        newUser.save()
+            .then(user => {
+                resolve(user);
+            })
+            .catch(err => {
+                reject(err);
+            });
+
+    });
+}
+
+export { addUser, getUsers, setModel }
