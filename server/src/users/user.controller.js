@@ -20,7 +20,8 @@ function addUser(req, res, next) {
 
     UserDataService.addUser(req.body)
         .then(user => {
-            res.status(201).json({
+            res.status(201);
+            res.json({
                 success: true,
                 payload: user
             });
