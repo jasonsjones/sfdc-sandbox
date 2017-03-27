@@ -57,16 +57,23 @@ function seedUsersInDb(noUsersInDb) {
             const users = Factory().getUsers();
             debug('need to seed users in database...');
             users.forEach((user, idx, arr) => {
-                if (idx === arr.length - 1) {
-                    debug(`user at the end off the array is ${user.name.last}`);
-                    resolve({
-                        success: true,
-                        message: 'users seeded in database'
-                    });
-                }
-            })
+                UserModel.create(user, function (err) {
+                    if (err) {
+                        reject({
+                            success: false,
+                            message: 'error seeding users in database'
+                        });
+                    }
+                    if (idx === arr.length - 1) {
+                        resolve({
+                            success: true,
+                            message: 'users seeded in database'
+                        });
+                    }
+                });
+            });
         } else {
-            debug('users in database, no need to seed');
+            debug('There are users in the database; seeding NOT required');
         }
     });
 }
