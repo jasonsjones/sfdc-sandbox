@@ -22,7 +22,7 @@ describe('User Controller', () => {
     });
 
     describe('getUsers()', () => {
-       let stub;
+        let stub;
         beforeEach(() => {
             stub = sinon.stub(UserDataService, "getUsers");
         });
@@ -49,6 +49,43 @@ describe('User Controller', () => {
                 done();
             });
         });
+    });
+
+    describe('getUser()', () => {
+        let stub;
+        let arrowId = mockedUsers[3]._id;
+        beforeEach(() => {
+            stub = sinon.stub(UserDataService, "getUser");
+            req = {
+                params: {
+                    id: arrowId
+                }
+            };
+        });
+
+        afterEach(() => {
+            stub.restore();
+        });
+
+        it('calls res.json()', (done) => {
+            stub.resolves(mockedUsers[3]);
+            UserController.getUser(req, res, function () {
+                expect(res.json.calledOnce).to.be.true;
+                done();
+            });
+        });
+
+        it('calls res.json() with response obj', (done) => {
+            stub.resolves(mockedUsers[3]);
+            let resObj = {success: true, payload: mockedUsers[3]};
+
+            UserController.getUser(req, res, function () {
+                expect(res.json.calledOnce).to.be.true;
+                expect(res.json.calledWith(resObj)).to.be.true;
+                done();
+            });
+        });
+
     });
 
     describe('addUser()', () => {

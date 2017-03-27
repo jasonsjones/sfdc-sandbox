@@ -14,6 +14,20 @@ function getUsers(req, res, next) {
         });
 }
 
+function getUser(req, res, next) {
+    UserDataService.getUser(req.params.id)
+        .then(user => {
+            res.json({
+                success: true,
+                payload: user
+            });
+            next();
+        })
+        .catch(err => {
+            next(err);
+        });
+}
+
 function addUser(req, res, next) {
     // TODO: need to check if there is already a user created with the
     // username provided
@@ -33,4 +47,4 @@ function addUser(req, res, next) {
         });
 }
 
-export { addUser, getUsers }
+export { addUser, getUsers, getUser }
