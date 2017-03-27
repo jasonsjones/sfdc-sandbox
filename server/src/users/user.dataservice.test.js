@@ -39,6 +39,57 @@ describe('User Data Service', () => {
         });
     });
 
+    describe('getUser()', () => {
+        let UserMock;
+        let arrowId;
+
+        beforeEach(() => {
+            arrowId = mockedUsers[3]._id;
+            UserMock = sinon.mock(User);
+            UserMock.expects('findById').withArgs(arrowId)
+                .chain('exec')
+                .resolves(mockedUsers[3]);
+        });
+
+        afterEach(() => {
+            UserMock.restore();
+        });
+
+        it('returns a promise', () => {
+            let result = UserDataService.getUser(arrowId);
+            expect(result).to.be.a('Promise');
+        });
+
+        it('resolves to a user', () => {
+            var result = UserDataService.getUser(arrowId);
+            return result.then(data => {
+                expect(data).to.be.an('object');
+                expect(data).to.have.property('email');
+                expect(data).to.have.property('name');
+                expect(data.name).to.have.property('full');
+                expect(data).to.have.property('local');
+                expect(data).to.have.property('createdDate');
+            });
+        });
+
+        it('rejects with error when user does not exit', () => {
+            let badUserId = '589e9e5ca8101500221a6b5f';
+            UserMock.expects('findById').withArgs(badUserId)
+                .chain('exec')
+                .rejects('User does not exist');
+
+            var result = UserDataService.getUser(badUserId);
+
+            return result.then(data => {
+                console.log(data);
+            })
+            .catch(err => {
+                expect(err).to.exist;
+            });
+        });
+
+    });
+
     describe('addUser()', () => {
 
         let user;

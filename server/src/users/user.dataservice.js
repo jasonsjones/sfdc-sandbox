@@ -21,6 +21,19 @@ function getUsers() {
     });
 }
 
+function getUser(id) {
+    return new Promise(function (resolve, reject) {
+        UserModel.findById(id).exec()
+            .then(user => {
+                resolve(user);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+
+}
+
 function addUser(user) {
     let newUser = new UserModel(user);
     return new Promise(function (resolve, reject) {
@@ -78,4 +91,4 @@ function seedUsersInDb(noUsersInDb) {
     });
 }
 
-export { addUser, getUsers, seedDatabase, seedUsersInDb, setModel }
+export { addUser, getUsers, getUser, seedDatabase, seedUsersInDb, setModel }
