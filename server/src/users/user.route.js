@@ -1,8 +1,12 @@
 import * as UserController from './user.controller';
 
 function userRoute(app) {
-    app.get('/api/users', UserController.getUsers);
-    app.post('/api/users', UserController.addUser);
+    app.route('/api/users')
+        .get(UserController.getUsers)
+        .post(UserController.addUser);
+
+    app.route('/api/user/:id')
+        .get(UserController.getUser);
 }
 
 export { userRoute }
