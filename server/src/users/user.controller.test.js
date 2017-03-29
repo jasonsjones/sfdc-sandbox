@@ -86,6 +86,15 @@ describe('User Controller', () => {
             });
         });
 
+        it('does not call res.json() when there is an error', (done) => {
+            stub.rejects('User not found');
+            UserController.getUser(req, res, function (err) {
+                expect(res.json.notCalled).to.be.true;
+                expect(err).to.exist;
+                done();
+            });
+        });
+
     });
 
     describe('addUser()', () => {
@@ -126,11 +135,66 @@ describe('User Controller', () => {
             UserController.addUser(req, res, function () {
                 let args = res.json.args[0][0];
                 expect(res.json.calledOnce).to.be.true;
+                expect(res.status.calledWith(201)).to.be.true;
                 expect(args).to.exist;
                 expect(args).to.have.property('success');
                 expect(args).to.have.property('payload');
                 expect(args.payload.email).to.equal(req.body.email);
                 expect(args.payload.local.username).to.equal(req.body.local.username);
+                done();
+            });
+        });
+
+        it('does not call res.json() when there is an error', (done) => {
+            addUserStub.rejects('Something went wrong while adding user');
+            UserController.addUser(req, res, function (err) {
+                expect(res.json.notCalled).to.be.true;
+                expect(err).to.exist;
+                done();
+            });
+        });
+    });
+
+    describe('removeUser()', () => {
+        let stub;
+        let arrowId = mockedUsers[3]._id;
+        beforeEach(() => {
+            stub = sinon.stub(UserDataService, "removeUser");
+            req = {
+                params: {
+                    id: arrowId
+                }
+            };
+        });
+
+        afterEach(() => {
+            stub.restore();
+        });
+
+        it('calls res.json()', (done) => {
+            stub.resolves(mockedUsers[3]);
+            UserController.removeUser(req, res, function () {
+                expect(res.json.calledOnce).to.be.true;
+                done();
+            });
+        });
+
+        it('calls res.json() with response obj', (done) => {
+            stub.resolves(mockedUsers[3]);
+            let resObj = {success: true, payload: mockedUsers[3]};
+
+            UserController.removeUser(req, res, function () {
+                expect(res.json.calledOnce).to.be.true;
+                expect(res.json.calledWith(resObj)).to.be.true;
+                done();
+            });
+        });
+
+        it('does not call res.json() when there is an error', (done) => {
+            stub.rejects('User not found');
+            UserController.removeUser(req, res, function (err) {
+                expect(res.json.notCalled).to.be.true;
+                expect(err).to.exist;
                 done();
             });
         });

@@ -42,9 +42,22 @@ function addUser(req, res, next) {
             next();
         })
         .catch(err => {
-            res.status(500).send(err);
             next(err);
         });
 }
 
-export { addUser, getUsers, getUser }
+function removeUser(req, res, next) {
+    UserDataService.removeUser(req.params.id)
+        .then(user => {
+            res.json({
+                success: true,
+                payload: user
+            });
+            next();
+        })
+        .catch(err => {
+            next(err);
+        });
+}
+
+export { addUser, getUsers, getUser, removeUser }
