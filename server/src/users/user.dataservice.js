@@ -48,6 +48,18 @@ function addUser(user) {
     });
 }
 
+function removeUser(id) {
+    return new Promise(function (resolve, reject) {
+        UserModel.findByIdAndRemove(id).exec()
+            .then(user => {
+                resolve(user);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}
+
 function seedDatabase() {
     return new Promise(function (resolve, reject) {
         UserModel.find({}).exec()
@@ -91,4 +103,4 @@ function seedUsersInDb(noUsersInDb) {
     });
 }
 
-export { addUser, getUsers, getUser, seedDatabase, seedUsersInDb, setModel }
+export { addUser, getUsers, getUser, removeUser, seedDatabase, seedUsersInDb, setModel }

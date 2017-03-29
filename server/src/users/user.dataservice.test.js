@@ -27,13 +27,13 @@ describe('User Data Service', () => {
         });
 
         it('returns a promise', () => {
-            let result = UserDataService.getUsers();
-            expect(result).to.be.a('Promise');
+            let promise = UserDataService.getUsers();
+            expect(promise).to.be.a('Promise');
         });
 
         it('resolves to an array of users', () => {
-            var result = UserDataService.getUsers();
-            return result.then(data => {
+            var promise = UserDataService.getUsers();
+            return promise.then(data => {
                 expect(data).to.be.an('array');
             });
         });
@@ -56,13 +56,13 @@ describe('User Data Service', () => {
         });
 
         it('returns a promise', () => {
-            let result = UserDataService.getUser(arrowId);
-            expect(result).to.be.a('Promise');
+            let promise = UserDataService.getUser(arrowId);
+            expect(promise).to.be.a('Promise');
         });
 
         it('resolves to a user', () => {
-            var result = UserDataService.getUser(arrowId);
-            return result.then(data => {
+            var promise = UserDataService.getUser(arrowId);
+            return promise.then(data => {
                 expect(data).to.be.an('object');
                 expect(data).to.have.property('email');
                 expect(data).to.have.property('name');
@@ -78,9 +78,9 @@ describe('User Data Service', () => {
                 .chain('exec')
                 .rejects('User does not exist');
 
-            var result = UserDataService.getUser(badUserId);
+            var promise = UserDataService.getUser(badUserId);
 
-            return result.then(data => {
+            return promise.then(data => {
                 console.log(data);
             })
             .catch(err => {
@@ -90,40 +90,61 @@ describe('User Data Service', () => {
 
     });
 
-    describe('addUser()', () => {
+    describe('add and remove user', () => {
+            let userId;
 
-        let user;
-
-        before(() => {
-            UserDataService.setModel(TestUser, "TestUserModel");
-            user = {
-                name: {
-                    first: 'Oliver',
-                    last: 'Queen'
-                },
-                email: 'oliver@queenconsolidated.com',
-                local: {
-                    username: 'arrow',
-                    password: 'p@ssw0rd'
-                }
-            };
-        });
-
-        after(() => {
-            UserDataService.setModel(User, "UserModel");
-            TestUser.collection.drop();
-        });
-
-        it('returns a promise that resolves to the saved user', () => {
-            let result = UserDataService.addUser(user);
-            expect(result).to.be.a('Promise');
-            return result.then(data => {
-                expect(data).to.exist;
-                expect(data).to.be.an('object');
-                expect(data).to.have.property('_id');
-                expect(data.name).to.have.property('full')
+            before(() => {
+                UserDataService.setModel(TestUser, "TestUserModel");
             });
-        })
 
+            after(() => {
+                UserDataService.setModel(User, "UserModel");
+                TestUser.collection.drop();
+            });
+
+        describe('addUser()', () => {
+            let user;
+            before(() => {
+                user = {
+                    name: {
+                        first: 'Oliver',
+                        last: 'Queen'
+                    },
+                    email: 'oliver@queenconsolidated.com',
+                    local: {
+                        username: 'arrow',
+                        password: 'p@ssw0rd'
+                    }
+                };
+            });
+
+            it('returns a promise that resolves to the saved user', () => {
+                let promise = UserDataService.addUser(user);
+                expect(promise).to.be.a('Promise');
+                return promise.then(user => {
+                    userId = user._id;
+                    expect(user).to.exist;
+                    expect(user).to.be.an('object');
+                    expect(user).to.have.property('_id');
+                    expect(user.name).to.have.property('full')
+                });
+            });
+
+        });
+
+        describe('removeUser()', () => {
+            it('returns a promise that resolves to the removed user', () => {
+                let promise = UserDataService.removeUser(userId);
+                expect(promise).to.be.a('Promise');
+                return promise.then(user => {
+                    expect(user).to.exist;
+                    expect(user).to.be.an('object');
+                    expect(user).to.have.property('_id');
+                    expect(user.name).to.have.property('full')
+                    expect(user._id).to.eql(userId);
+                });
+            });
+
+        });
     });
 });
