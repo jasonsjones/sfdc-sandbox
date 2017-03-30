@@ -6,7 +6,8 @@ function userRoute(app) {
         .post(UserController.addUser);
 
     app.route('/api/user/:id')
-        .get(UserController.getUser);
+        .get(UserController.getUser)
+        .delete(UserController.removeUser);
 }
 
 export { userRoute }
