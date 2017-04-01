@@ -155,6 +155,58 @@ describe('User Controller', () => {
         });
     });
 
+    describe('patchUser()', () => {
+        let stub;
+        let arrowId = mockedUsers[3]._id;
+        let updatedArrow;
+        beforeEach(() => {
+            stub = sinon.stub(UserDataService, 'patchUser');
+            req = {
+                params: {
+                    id: arrowId
+                },
+                body: {
+                    email: 'arrow@queenconsolidated.com'
+                }
+            };
+            updatedArrow = mockedUsers[3];
+            updatedArrow.email = req.body.email;
+        });
+
+        afterEach(() => {
+            stub.restore();
+        });
+
+        it('calls res.json()', (done) => {
+            stub.resolves(updatedArrow);
+
+            UserController.patchUser(req, res, function () {
+                expect(res.json.calledOnce).to.be.true;
+                done();
+            });
+        });
+
+        it('calls res.json() with response obj', (done) => {
+            stub.resolves(updatedArrow);
+            let resObj = {success: true, payload: updatedArrow};
+
+            UserController.patchUser(req, res, function () {
+                expect(res.json.calledOnce).to.be.true;
+                expect(res.json.calledWith(resObj)).to.be.true;
+                done();
+            });
+        });
+
+        it('does not call res.json() when there is an error', (done) => {
+            stub.rejects('User not found');
+            UserController.patchUser(req, res, function (err) {
+                expect(res.json.notCalled).to.be.true;
+                expect(err).to.exist;
+                done();
+            });
+        });
+    });
+
     describe('removeUser()', () => {
         let stub;
         let arrowId = mockedUsers[3]._id;

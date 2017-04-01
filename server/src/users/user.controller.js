@@ -46,6 +46,25 @@ function addUser(req, res, next) {
         });
 }
 
+function patchUser(req, res, next) {
+
+    if (req.body.local && req.body.local.password) {
+        delete req.body.local.password;
+    }
+
+    UserDataService.patchUser(req.params.id, req.body)
+        .then(user => {
+            res.json({
+                success: true,
+                payload: user
+            });
+            next();
+        })
+        .catch(err => {
+            next(err);
+        });
+}
+
 function removeUser(req, res, next) {
     UserDataService.removeUser(req.params.id)
         .then(user => {
@@ -60,4 +79,4 @@ function removeUser(req, res, next) {
         });
 }
 
-export { addUser, getUsers, getUser, removeUser }
+export { addUser, getUsers, getUser, patchUser, removeUser }
