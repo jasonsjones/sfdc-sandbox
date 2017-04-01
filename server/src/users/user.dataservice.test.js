@@ -90,7 +90,7 @@ describe('User Data Service', () => {
 
     });
 
-    describe('add and remove user', () => {
+    describe('add, patch, and remove user', () => {
             let userId;
 
             before(() => {
@@ -132,6 +132,28 @@ describe('User Data Service', () => {
 
         });
 
+        describe('patchUser()', () => {
+            let patchUser;
+            before(() => {
+                patchUser = {
+                    email: 'arrow@queenconsolidated.com',
+                };
+            });
+
+            it('returns a promise that resolves to the patched user', () => {
+                let promise = UserDataService.patchUser(userId, patchUser);
+                expect(promise).to.be.a('Promise');
+                return promise.then(user => {
+                    expect(user).to.exist;
+                    expect(user).to.be.an('object');
+                    expect(user).to.have.property('_id');
+                    expect(user.name).to.have.property('full')
+                    expect(user.email).to.equal(patchUser.email);
+                });
+            });
+
+        });
+
         describe('removeUser()', () => {
             it('returns a promise that resolves to the removed user', () => {
                 let promise = UserDataService.removeUser(userId);
@@ -147,4 +169,5 @@ describe('User Data Service', () => {
 
         });
     });
+
 });
