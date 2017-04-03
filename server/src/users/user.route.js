@@ -7,6 +7,7 @@ function userRoute(app) {
 
     app.route('/api/user/:id')
         .get(UserController.getUser)
+        .patch(UserController.patchUser)
         .delete(UserController.removeUser);
 }
 
