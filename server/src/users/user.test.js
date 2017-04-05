@@ -28,6 +28,7 @@ describe('User Route', () => {
         });
 
         it('returns json', () => {
+            expect(response.status).to.equal(200);
             expect(response.type).to.eql('application/json');
         });
 
@@ -54,6 +55,7 @@ describe('User Route', () => {
         });
 
         it('returns json', () => {
+            expect(response.status).to.equal(200);
             expect(response.type).to.eql('application/json');
         });
 
@@ -116,6 +118,7 @@ describe('User Route', () => {
             });
 
             it('returns json', () => {
+                expect(response.status).to.equal(201);
                 expect(response.type).to.eql('application/json');
             });
 
@@ -156,6 +159,7 @@ describe('User Route', () => {
             });
 
             it('returns json', () => {
+                expect(response.status).to.equal(200);
                 expect(response.type).to.eql('application/json');
             });
 
@@ -179,7 +183,39 @@ describe('User Route', () => {
         });
 
         describe('DELETE /user/:id', () => {
+            let response;
+            before((done) => {
 
+                chai.request(app)
+                    .delete(`/api/user/${userId}`)
+                    .end((err, res) => {
+                        expect(err).to.be.null;
+                        response = res;
+                        done();
+                    });
+            });
+
+            it('returns json', () => {
+                expect(response.status).to.equal(200);
+                expect(response.type).to.eql('application/json');
+            });
+
+            it('returns json with success property that is a boolean', () => {
+                expect(response.body).to.have.property('success').that.is.a('boolean');
+            });
+
+            it('returns json with payload property that is an object', () => {
+                expect(response.body).to.have.property('payload').that.is.an('object');
+            });
+
+            it('returns a payload that is the deleted user', () => {
+                let dig = response.body.payload;
+                expect(dig).to.have.property('_id').that.is.an('string');
+                expect(dig).to.have.property('email').that.is.an('string');
+                expect(dig).to.have.property('admin').that.is.an('boolean');
+                expect(dig.name).to.have.property('full').that.is.an('string');
+                expect(dig.local.username).to.equal('dig');
+            });
         });
 
     });
