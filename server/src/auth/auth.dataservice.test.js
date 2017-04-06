@@ -1,6 +1,6 @@
 
 import chai from 'chai';
-import  sinon from 'sinon';
+import sinon from 'sinon';
 import 'sinon-mongoose';
 import 'sinon-as-promised';
 
