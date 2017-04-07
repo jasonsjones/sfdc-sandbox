@@ -2,7 +2,14 @@ import { User } from '../users/user.model';
 
 function login(user) {
     return new Promise((resolve, reject) => {
-       User.findOne({'local.username': user.username})
+        if (!user.username || !user.password) {
+            return resolve({
+                authenticated: false,
+                payload: null
+            });
+        }
+
+        User.findOne({'local.username': user.username})
             .exec()
             .then(dbUser => {
                 if (dbUser) {

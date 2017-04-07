@@ -78,5 +78,27 @@ describe('Auth Data Service', () => {
             });
         });
 
+        it('resolves to null payload when username is not provided', () => {
+            let noUser = {password: 'p@ssw0rd'};
+            let promise = AuthDataService.login(noUser);
+            return promise.then(data => {
+                expect(data).to.be.an('object');
+                expect(data.authenticated).to.be.false;
+                expect(data).to.have.property('payload');
+                expect(data.payload).to.be.null;
+            });
+        });
+
+        it('resolves to null payload when password is not provided', () => {
+            let noUser = {username: 'notHere'};
+            let promise = AuthDataService.login(noUser);
+            return promise.then(data => {
+                expect(data).to.be.an('object');
+                expect(data.authenticated).to.be.false;
+                expect(data).to.have.property('payload');
+                expect(data.payload).to.be.null;
+            });
+        });
+
     });
 });
