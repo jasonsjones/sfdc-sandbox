@@ -1,4 +1,6 @@
+import config from '../config/config';
 import { User } from '../users/user.model';
+import * as jwt from 'jsonwebtoken';
 
 function login(user) {
     return new Promise((resolve, reject) => {
@@ -14,10 +16,28 @@ function login(user) {
             .then(dbUser => {
                 if (dbUser) {
                     let isAuthenticated = dbUser.verifyPassword(user.password);
-                    resolve({
-                        authenticated: isAuthenticated,
-                        payload: dbUser
-                    });
+                    let token = null;
+                    if (isAuthenticated) {
+                        token = jwt.sign(dbUser, config.tokenSecret, {
+                            expiresIn: '24h'
+                        });
+                        resolve({
+                            authenticated: isAuthenticated,
+                            payload: {
+                                user: dbUser,
+                                token: token
+                            }
+                        });
+                    } else {
+                        resolve({
+                            authenticated: isAuthenticated,
+                            payload: {
+                                user: null,
+                                token: token
+                            }
+                        });
+
+                    }
                 } else {
                     resolve({
                         authenticated: false,

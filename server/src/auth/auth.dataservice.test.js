@@ -50,6 +50,8 @@ describe('Auth Data Service', () => {
                 expect(data).to.be.an('object');
                 expect(data).to.have.property('authenticated');
                 expect(data).to.have.property('payload');
+                expect(data.payload).to.have.property('token');
+                expect(data.payload).to.have.property('user');
             });
         });
 
@@ -61,6 +63,8 @@ describe('Auth Data Service', () => {
                 expect(data).to.be.an('object');
                 expect(data.authenticated).to.be.false;
                 expect(data).to.have.property('payload');
+                expect(data.payload).to.have.property('token');
+                expect(data.payload).to.have.property('user');
             });
         });
 

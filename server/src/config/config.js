@@ -8,5 +8,6 @@ export default {
        test: {
            name: 'devmain'
        }
-   }
+   },
+   tokenSecret: 'jwtIsCoolTech'
 }
