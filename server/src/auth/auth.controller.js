@@ -22,10 +22,7 @@ function login(req, res, next) {
                 res.json({
                     success: true,
                     message: 'User authenticated',
-                    payload: {
-                        user: response.payload,
-                        token: response.token
-                    }
+                    payload: response.payload
                 });
             } else if (!response.authenticated && response.payload) {
                 res.json({
