@@ -21,13 +21,13 @@ function login(req, res, next) {
             if (response.authenticated && response.payload) {
                 res.json({
                     success: true,
-                    message: 'User authenticated',
+                    message: response.message,
                     payload: response.payload
                 });
-            } else if (!response.authenticated && response.payload) {
+            } else if (!response.authenticated) {
                 res.json({
                     success: false,
-                    message: 'User not authenticated',
+                    message: response.message,
                     payload: null
                 });
             }

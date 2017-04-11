@@ -42,6 +42,7 @@ describe('Auth Controller', () => {
         it('calls res.json()', (done) => {
             let mockedDSResponse = {
                 authenticated: true,
+                message: 'User authenticated',
                 payload: {
                     user: mockedUsers[3],
                     token: mockedToken
@@ -58,6 +59,7 @@ describe('Auth Controller', () => {
         it('calls res.json() with response object when authentication succeeds', (done) => {
             let mockedDSResponse = {
                 authenticated: true,
+                message: 'User authenticated',
                 payload: {
                     user: mockedUsers[3],
                     token: mockedToken
@@ -84,6 +86,7 @@ describe('Auth Controller', () => {
         it('calls res.json() with response object when authentication fails', (done) => {
             let mockedDSResponse = {
                 authenticated: false,
+                message: 'User not authenticated',
                 payload: {
                     user: null,
                     token: null
@@ -107,6 +110,7 @@ describe('Auth Controller', () => {
         it('calls res.json() with response object when username is not provided', (done) => {
             let mockedDSResponse = {
                 authenticated: false,
+                message: 'Username and password are required',
                 payload: null
             };
             stub.resolves(mockedDSResponse);
@@ -133,6 +137,7 @@ describe('Auth Controller', () => {
         it('calls res.json() with response object when password is not provided', (done) => {
             let mockedDSResponse = {
                 authenticated: false,
+                message: 'Username and password are required',
                 payload: null
             };
             stub.resolves(mockedDSResponse);

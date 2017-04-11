@@ -7,6 +7,7 @@ function login(user) {
         if (!user.username || !user.password) {
             return resolve({
                 authenticated: false,
+                message: 'Username and password are required',
                 payload: null
             });
         }
@@ -23,6 +24,7 @@ function login(user) {
                         });
                         resolve({
                             authenticated: isAuthenticated,
+                            message: 'User authenticated',
                             payload: {
                                 user: dbUser,
                                 token: token
@@ -31,6 +33,7 @@ function login(user) {
                     } else {
                         resolve({
                             authenticated: isAuthenticated,
+                            message: 'User not authenticated',
                             payload: {
                                 user: null,
                                 token: token
@@ -41,6 +44,7 @@ function login(user) {
                 } else {
                     resolve({
                         authenticated: false,
+                        message: 'User not found',
                         payload: null
                     });
                 }
