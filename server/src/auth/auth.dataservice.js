@@ -19,9 +19,10 @@ function login(user) {
                     let isAuthenticated = dbUser.verifyPassword(user.password);
                     let token = null;
                     if (isAuthenticated) {
-                        token = jwt.sign(dbUser, config.tokenSecret, {
+                        token = jwt.sign(dbUser._id, config.tokenSecret, {
                             expiresIn: '24h'
                         });
+                        console.log(token);
                         resolve({
                             authenticated: isAuthenticated,
                             message: 'User authenticated',
