@@ -1,5 +1,6 @@
 */node_modules/
 npm-debug.log
+.DS_Store
 server/data/*
 */.babel.json
 */.v8flags*
