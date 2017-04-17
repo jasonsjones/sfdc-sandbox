@@ -2,3 +2,18 @@
     background-image: url('../assets/sfdc-login-einstein.jpg');
     background-position: center;
 }
+
+.left {
+    background-color: #eee;
+}
+
+.login-container {
+    background-color: #fff;
+    margin: 200px auto;
+    height: 300px;
+    width: 400px;
+}
+
+.input-container {
+    padding: 80px 20px;
+}
