@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { GlobalHeaderComponent } from './header/globalHeader.component';
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 @NgModule({
-    imports: [ BrowserModule, RouterModule.forRoot(appRoutes) ],
+    imports: [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes) ],
     declarations: [ 
         AppComponent,
         GlobalHeaderComponent,

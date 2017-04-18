@@ -4,16 +4,42 @@
 }
 
 .left {
-    background-color: #eee;
+    background-color: #efefef;
+}
+
+.wrap {
+    margin: 200px auto;
+    width: 50%;
+    min-width: 400px;
+}
+
+.logo {
+    width: 100%;
+    margin: 0 auto 5%;
+}
+
+.logo img {
+    width: 50%;
+    margin-left: 25%;
 }
 
 .login-container {
+    margin: 0 auto;
     background-color: #fff;
-    margin: 200px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     height: 300px;
-    width: 400px;
+    width: 100%;
 }
 
 .input-container {
     padding: 80px 20px;
+}
+
+.input-container input {
+    height: 40px;
+}
+
+button {
+    margin-top: 15px;
 }

@@ -1,26 +1,34 @@
 <div class="slds-grid slds-grid--frame slds-grid--pull-padded-medium">
     <div class="slds-size--1-of-2 slds-p-horizontal--medium left">
 
-        <div class="login-container">
-            <div class="input-container">
+        <div class="wrap">
 
-                <div class="slds-form-element">
-                    <label class="slds-form-element__label" for="username">Username</label>
-                    <div class="slds-form-element__control">
-                        <input type="text" id="username" class="slds-input" />
-                    </div>
+            <div class="slds-image logo">
+                <img src="../assets/SFDC_logo.png" alt="">
+            </div>
+            <div class="login-container">
+                <div class="input-container">
+
+                    <form (ngSubmit)="login()">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="username">Username</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="username" class="slds-input" [(ngModel)]="model.username" name="username" />
+                            </div>
+                        </div>
+
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="password">Password</label>
+                            <div class="slds-form-element__control">
+                                <input type="password" id="password" class="slds-input" [(ngModel)]="model.password" name="password" />
+                            </div>
+                        </div>
+                        <button type="submit" class="slds-button slds-button--brand">Login</button>
+                    </form>
+
                 </div>
-
-                <div class="slds-form-element">
-                    <label class="slds-form-element__label" for="password">Password</label>
-                    <div class="slds-form-element__control">
-                        <input type="password" id="password" class="slds-input" />
-                    </div>
-                </div>
-
             </div>
         </div>
-
 
     </div>
     <div class="slds-size--1-of-2 slds-p-horizontal--medium trailhead-bg">
