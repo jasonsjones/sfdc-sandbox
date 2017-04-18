@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { AuthService } from './core/auth.service';
 import { GlobalHeaderComponent } from './header/globalHeader.component';
 import { GlobalNavComponent } from './navbar/globalNav.component';
 import { OneAppMainComponent } from './one/oneapp-main.component';
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
         OneAppMainComponent,
         LoginComponent
     ],
+    providers: [ AuthService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
