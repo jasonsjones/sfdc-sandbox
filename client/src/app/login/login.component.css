@@ -27,13 +27,13 @@
     margin: 0 auto;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 3px;
     height: 300px;
     width: 100%;
 }
 
 .input-container {
-    padding: 80px 20px;
+    padding: 60px 20px;
 }
 
 .input-container input {
