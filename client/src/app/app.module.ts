@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './core/auth.service';
@@ -16,7 +17,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 @NgModule({
-    imports: [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes) ],
+    imports: [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
     declarations: [ 
         AppComponent,
         GlobalHeaderComponent,
