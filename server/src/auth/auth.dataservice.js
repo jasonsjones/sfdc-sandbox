@@ -22,7 +22,6 @@ function login(user) {
                         token = jwt.sign(dbUser._id, config.tokenSecret, {
                             expiresIn: '24h'
                         });
-                        console.log(token);
                         resolve({
                             authenticated: isAuthenticated,
                             message: 'User authenticated',
