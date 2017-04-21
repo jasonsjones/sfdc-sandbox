@@ -9,18 +9,18 @@
             <div class="login-container">
                 <div class="input-container">
 
-                    <form (ngSubmit)="login()">
+                    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate>
                         <div class="slds-form-element">
                             <label class="slds-form-element__label" for="username">Username</label>
                             <div class="slds-form-element__control">
-                                <input type="text" id="username" class="slds-input" [(ngModel)]="model.username" name="username" />
+                                <input type="text" id="username" class="slds-input" formControlName="username" />
                             </div>
                         </div>
 
                         <div class="slds-form-element">
                             <label class="slds-form-element__label" for="password">Password</label>
                             <div class="slds-form-element__control">
-                                <input type="password" id="password" class="slds-input" [(ngModel)]="model.password" name="password" />
+                                <input type="password" id="password" class="slds-input" formControlName="password" />
                             </div>
                         </div>
                         <button type="submit" class="slds-button slds-button--brand">Login</button>

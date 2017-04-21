@@ -1,20 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
 import { AuthService } from '../core/auth.service';
 
 @Component({
     templateUrl: 'src/app/login/login.component.html',
     styleUrls: ['src/app/login/login.component.css']
 })
-export class LoginComponent { 
+export class LoginComponent implements OnInit { 
 
-    model:any = {};
+    loginForm: FormGroup;
 
     constructor(private authService: AuthService) {}
 
-    login(): void {
-        this.authService.login(this.model.username, this.model.password)
+    ngOnInit(): void {
+        this.loginForm = new FormGroup({
+            username: new FormControl(),
+            password: new FormControl() 
+        });
+
+    }
+
+    login(model): void {
+        this.authService.login(model.username, model.password)
             .subscribe(data => {
+                if (data) {
+                    console.log('Login successful...check localStorage');
+                    console.log('need to redirect to somewhere else...');
+                }
             });
-        this.model = {}
+        this.loginForm.reset();
     }
 }
