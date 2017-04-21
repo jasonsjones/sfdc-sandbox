@@ -1,5 +1,5 @@
 import config from '../config/config';
-import { User } from '../users/user.model';
+import { User } from '../user/user.model';
 import * as jwt from 'jsonwebtoken';
 
 function login(user) {

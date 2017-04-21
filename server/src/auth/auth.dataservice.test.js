@@ -4,8 +4,8 @@ import sinon from 'sinon';
 import 'sinon-mongoose';
 import 'sinon-as-promised';
 
-import factory from '../users/user.datafactory';
-import { User } from '../users/user.model';
+import factory from '../user/user.datafactory';
+import { User } from '../user/user.model';
 import * as AuthDataService from './auth.dataservice';
 
 const expect = chai.expect;

@@ -4,7 +4,7 @@ import 'sinon-as-promised';
 
 import * as AuthController from './auth.controller';
 import * as AuthDataService from './auth.dataservice';
-import factory from '../users/user.datafactory';
+import factory from '../user/user.datafactory';
 import tokenFactory from './auth.jwttokenfactory';
 
 const expect = chai.expect;

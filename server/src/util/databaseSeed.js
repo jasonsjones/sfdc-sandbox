@@ -1,5 +1,5 @@
 const debug = require('debug')('sfdc:databaseSeed');
-import * as UserDataservice from '../users/user.dataservice';
+import * as UserDataservice from '../user/user.dataservice';
 
 export default function () {
     UserDataservice.seedDatabase()
