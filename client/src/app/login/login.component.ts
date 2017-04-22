@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthService } from '../core/auth.service';
 
@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {
         this.loginForm = new FormGroup({
-            username: new FormControl(),
-            password: new FormControl() 
+            username: new FormControl('', Validators.required),
+            password: new FormControl('', Validators.required)
         });
 
     }
