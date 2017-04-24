@@ -1,0 +1,28 @@
+<!-- User pop over.  Need to refactor to own nested component -->
+<div class="slds-popover slds-popover--small slds-nubbin--top-right" role="dialog" style="position:absolute;right:.5rem;top:3.5rem">
+    <div class="slds-popover__body slds-p-around--small">
+
+        <div class="slds-grid">
+
+            <button class="slds-button" title="person name" aria-haspopup="true">
+                <span class="slds-avatar slds-avatar--circle slds-avatar--medium">
+                    <img src="node_modules/@salesforce-ux/design-system/assets/images/avatar1.jpg" alt="person name" />
+                </span>
+            </button>
+
+
+            <div class="slds-grid slds-grid--vertical">
+                <div class="slds-p-top--xx-small slds-p-left--x-small">
+                    <p class="slds-text-heading--small">{{currentUser.firstname + ' ' + currentUser.lastname}}</p>
+                    <a href="javascript:void(0);" class="slds-text-link">Settings</a>
+                    <a href="javascript:void(0);" class="slds-text-link" (click)="logout()">
+                        <span class="slds-p-left--medium">Log Out</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

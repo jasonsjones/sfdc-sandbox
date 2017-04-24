@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AuthService } from './core/auth.service';
 import { GlobalHeaderComponent } from './header/globalHeader.component';
+import { UserPopOverComponent } from './header/user-popover.component';
 import { GlobalNavComponent } from './navbar/globalNav.component';
 import { OneAppMainComponent } from './one/oneapp-main.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
         AppComponent,
         GlobalHeaderComponent,
         GlobalNavComponent,
+        UserPopOverComponent,
         OneAppMainComponent,
         LoginComponent
     ],
