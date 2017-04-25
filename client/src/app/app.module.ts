@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './core/auth.service';
+import { AuthGuard } from './core/auth.guard';
 import { GlobalHeaderComponent } from './header/globalHeader.component';
 import { UserPopOverComponent } from './header/user-popover.component';
 import { GlobalNavComponent } from './navbar/globalNav.component';
@@ -13,7 +14,7 @@ import { OneAppMainComponent } from './one/oneapp-main.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-    { path: 'one', component: OneAppMainComponent },
+    { path: 'one', component: OneAppMainComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
         OneAppMainComponent,
         LoginComponent
     ],
-    providers: [ AuthService ],
+    providers: [ AuthService, AuthGuard ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
