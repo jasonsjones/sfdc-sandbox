@@ -11,7 +11,7 @@ function setModel(model, modelName) {
 
 function getUsers() {
     return new Promise(function (resolve, reject) {
-        UserModel.find({}).exec()
+        UserModel.find({}, '-local.password').exec()
             .then(users => {
                 resolve(users);
             })
