@@ -2,12 +2,39 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
+import * as UserDataService from '../user/user.dataservice';
+import { TestUser, User } from '../user/user.model';
 import app from '../config/app';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe('Auth Route', () => {
+    let mockUser, mockUserData;
+    before((done) => {
+        UserDataService.setModel(TestUser, "TestUserModel");
+        mockUserData = {
+            name: {
+                first: 'Oliver',
+                last: 'Queen'
+            },
+            email: 'oliver@queenconsolidated.com',
+            local: {
+                username: 'arrow',
+                password: 'p@ssw0rd'
+            }
+        };
+        mockUser = new User(mockUserData);
+        mockUser.save(function () {
+            done();
+        });
+    });
+
+    after(() => {
+        UserDataService.setModel(User, "UserModel");
+        TestUser.collection.drop();
+    });
+
     describe('POST /api/login with valid credentials', () => {
         let response;
 
