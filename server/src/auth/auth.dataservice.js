@@ -26,7 +26,7 @@ function login(user) {
                             authenticated: isAuthenticated,
                             message: 'User authenticated',
                             payload: {
-                                user: dbUser,
+                                user: dbUser.toAuthJSON(),
                                 token: token
                             }
                         });

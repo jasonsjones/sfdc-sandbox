@@ -53,10 +53,10 @@ export class AuthService {
 
     private generateCurrentUser(user): IUser {
         return {
-            firstname: user.name.first,
-            lastname: user.name.last,
+            firstname: user.firstName,
+            lastname: user.lastName,
             email: user.email,
-            username: user.local.username,
+            username: user.username,
             admin: user.admin
         }
 

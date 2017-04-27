@@ -12,16 +12,21 @@ const defaultPassword = 'p@ssw0rd';
 
 const userSchema = new Schema({
     name: {
-        first: {type: String},
-        last: {type: String}
+        first: {type: String, required: true},
+        last: {type: String, required: true}
     },
+    displayName: {type: String, default: ''},
+    bio: {type: String, default: ''},
     email: {type: String, required: true},
+    avatar: {type: String, default: ''},
     local: {
         username: {type: String, required: true},
         password: {type: String, default: defaultPassword}
     },
     admin: {type: Boolean, default: false},
-    createdDate: {type: Date, default: Date.now()}
+    following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    createdDate: {type: Date, default: Date.now()},
+    lastModifiedDate: {type: Date, default: Date.now()}
 });
 
 // execute before each user.save() call
@@ -59,6 +64,19 @@ userSchema.set('toObject', {virtuals: true});
 userSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
+userSchema.methods.toAuthJSON = function () {
+    return {
+        id: this._id,
+        firstName: this.name.first,
+        lastName: this.name.last,
+        displayName: this.displayName,
+        email: this.email,
+        username: this.local.username,
+        avatar: this.avatar,
+        admin: this.admin
+    };
+}
 
 userSchema.methods.toJSONObj = function () {
     let user = this.toObject();

@@ -13,7 +13,9 @@ export default function () {
                     first: 'Clark',
                     last: 'Kent'
                 },
+                displayName: 'Clark Kent',
                 email: 'clark@dailyplanet.com',
+                avatar: 'male3.png',
                 local: {
                     username: 'superman',
                     password: DEFAULT_PASSWORD
@@ -26,7 +28,9 @@ export default function () {
                     first: 'Bruce',
                     last: 'Wayne'
                 },
+                displayName: 'Bruce Wayne',
                 email: 'bruce@wayneenterprises.com',
+                avatar: 'male2.png',
                 local: {
                     username: 'batman',
                     password: DEFAULT_PASSWORD
@@ -39,7 +43,9 @@ export default function () {
                     first: 'Tony',
                     last: 'Stark'
                 },
+                displayName: 'Tony Stark',
                 email: 'tony@starklabs.com',
+                avatar: 'avatar6.jpg',
                 local: {
                     username: 'ironman',
                     password: DEFAULT_PASSWORD
@@ -52,7 +58,9 @@ export default function () {
                     first: 'Oliver',
                     last: 'Queen'
                 },
+                displayName: 'Oliver Queen',
                 email: 'oliver@queenconsolidated.com',
+                avatar: 'male3.png',
                 local: {
                     username: 'arrow',
                     password: DEFAULT_PASSWORD
@@ -65,7 +73,9 @@ export default function () {
                     first: 'Barry',
                     last: 'Allen'
                 },
+                displayName: 'Barry Allen',
                 email: 'barry@starzlabs.com',
+                avatar: 'male6.png',
                 local: {
                     username: 'theflash',
                     password: DEFAULT_PASSWORD
@@ -78,7 +88,9 @@ export default function () {
                     first: 'Bruce',
                     last: 'Banner'
                 },
+                displayName: 'Bruce Banner',
                 email: 'bruce@pantheon.com',
+                avatar: 'male5.png',
                 local: {
                     username: 'hulk',
                     password: DEFAULT_PASSWORD
