@@ -53,8 +53,8 @@ describe('User Model', () => {
         before((done) => {
             mockUserData = {
                 name: {
-                    firstName: 'Oliver',
-                    lastName: 'Queen'
+                    first: 'Oliver',
+                    last: 'Queen'
                 },
                 email: 'oliver@queenconsolidated.com',
                 local: {
