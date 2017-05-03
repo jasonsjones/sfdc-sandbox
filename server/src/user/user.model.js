@@ -32,6 +32,7 @@ const userSchema = new Schema({
 // execute before each user.save() call
 userSchema.pre('save', function (callback) {
     let user = this;
+    user.lastModifiedDate = Date.now();
 
     // early return if the password is not modified
     if (!user.isModified('local.password')) {
