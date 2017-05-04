@@ -14,6 +14,7 @@ export default function () {
                     last: 'Kent'
                 },
                 displayName: 'Clark Kent',
+                bio: 'The man of steel',
                 email: 'clark@dailyplanet.com',
                 avatar: 'male3.png',
                 local: {
@@ -21,7 +22,8 @@ export default function () {
                     password: DEFAULT_PASSWORD
                 },
                 admin: true,
-                createdDate: new Date('2016-09-12')
+                createdDate: new Date('2016-09-12'),
+                lastModifiedDate: new Date('2016-10-14')
             },
             {
                 name: {
@@ -29,6 +31,7 @@ export default function () {
                     last: 'Wayne'
                 },
                 displayName: 'Bruce Wayne',
+                bio: 'Saving Gotham City',
                 email: 'bruce@wayneenterprises.com',
                 avatar: 'male2.png',
                 local: {
@@ -36,7 +39,8 @@ export default function () {
                     password: DEFAULT_PASSWORD
                 },
                 admin: false,
-                createdDate: new Date('2016-09-14')
+                createdDate: new Date('2016-09-14'),
+                lastModifiedDate: new Date('2016-10-14')
             },
             {
                 name: {
@@ -44,6 +48,7 @@ export default function () {
                     last: 'Stark'
                 },
                 displayName: 'Tony Stark',
+                bio: 'Ironman',
                 email: 'tony@starklabs.com',
                 avatar: 'avatar6.jpg',
                 local: {
@@ -51,7 +56,8 @@ export default function () {
                     password: DEFAULT_PASSWORD
                 },
                 admin: true,
-                createdDate: new Date('2016-09-17')
+                createdDate: new Date('2016-09-17'),
+                lastModifiedDate: new Date('2016-10-18')
             },
             {
                 name: {
@@ -59,6 +65,7 @@ export default function () {
                     last: 'Queen'
                 },
                 displayName: 'Oliver Queen',
+                bio: 'A shipwrecked billionaire turns superhero',
                 email: 'oliver@queenconsolidated.com',
                 avatar: 'male3.png',
                 local: {
@@ -66,7 +73,8 @@ export default function () {
                     password: DEFAULT_PASSWORD
                 },
                 admin: true,
-                createdDate: new Date('2017-01-20')
+                createdDate: new Date('2017-01-20'),
+                lastModifiedDate: new Date('2017-02-18')
             },
             {
                 name: {
@@ -74,6 +82,7 @@ export default function () {
                     last: 'Allen'
                 },
                 displayName: 'Barry Allen',
+                bio: 'The Flash',
                 email: 'barry@starzlabs.com',
                 avatar: 'male6.png',
                 local: {
@@ -81,7 +90,8 @@ export default function () {
                     password: DEFAULT_PASSWORD
                 },
                 admin: false,
-                createdDate: new Date('2016-09-20')
+                createdDate: new Date('2016-09-20'),
+                lastModifiedDate: new Date('2017-02-18')
             },
             {
                 name: {
@@ -89,6 +99,7 @@ export default function () {
                     last: 'Banner'
                 },
                 displayName: 'Bruce Banner',
+                bio: 'The Hulk',
                 email: 'bruce@pantheon.com',
                 avatar: 'male5.png',
                 local: {
@@ -96,7 +107,8 @@ export default function () {
                     password: DEFAULT_PASSWORD
                 },
                 admin: false,
-                createdDate: new Date('2016-10-28')
+                createdDate: new Date('2016-10-28'),
+                lastModifiedDate: new Date('2016-12-18')
             }
         ];
     }
@@ -106,7 +118,11 @@ export default function () {
             {
                 "_id": "589e9e5ca8191700221b6a7c",
                 "email": "clark@dailyplanet.com",
+                "displayName": "Clark Kent",
+                "bio": "The man of steel",
+                "avatar": "male3.png",
                 "createdDate": new Date("2016-09-12T00:00:00Z"),
+                "lastModifiedDate": new Date("2016-10-12T00:00:00Z"),
                 "admin": true,
                 "local": {
                     "username": "superman",
@@ -122,7 +138,11 @@ export default function () {
             {
                 "_id": "589e9e5ca8191700221b6a7d",
                 "email": "bruce@wayneenterprises.com",
+                "displayName": "Bruce Wayne",
+                "bio": "The Hulk",
+                "avatar": "male3.png",
                 "createdDate": new Date("2016-09-14T00:00:00Z"),
+                "lastModifiedDate": new Date("2016-09-14T00:00:00Z"),
                 "admin": false,
                 "local": {
                     "username": "batman",
