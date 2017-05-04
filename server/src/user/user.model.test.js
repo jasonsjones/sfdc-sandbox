@@ -42,6 +42,10 @@ describe('User Model', () => {
             expect(savedUser.createdDate).to.exist;
         });
 
+        it('adds lastModifiedDate property by default', () => {
+            expect(savedUser.lastModifiedDate).to.exist;
+        });
+
         it('stores a hashed password', () => {
             expect(savedUser.local.password).to.not.equal(mockUserData.local.password);
         });
@@ -57,6 +61,9 @@ describe('User Model', () => {
                     last: 'Queen'
                 },
                 email: 'oliver@queenconsolidated.com',
+                bio: 'A billionaire turned superhero',
+                displayName: 'Oliver Queen',
+                avatar: 'avatar8.png',
                 local: {
                     username: 'arrow',
                     password: 'p@ssw0rd'
