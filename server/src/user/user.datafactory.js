@@ -158,7 +158,10 @@ export default function () {
             {
                 "_id": "589e9e5ca8191700221b6a7e",
                 "email": "tony@starklabs.com",
+                "displayName": "Tony Stark",
+                "bio": "Ironman",
                 "createdDate": new Date("2016-09-17T00:00:00Z"),
+                "lastModifiedDate": new Date("2016-10-14T00:00:00Z"),
                 "admin": true,
                 "local": {
                     "username": "ironman",
@@ -174,7 +177,10 @@ export default function () {
             {
                 "_id": "589e9e5ca8191700221b6a7f",
                 "email": "oliver@queenconsolidated.com",
+                "displayName": "Oliver Queen",
+                "bio": "A shipwrecked billionaire turns superhero",
                 "createdDate": new Date("2017-01-20T00:00:00Z"),
+                "lastModifiedDate": new Date("2017-03-20T00:00:00Z"),
                 "admin": true,
                 "local": {
                     "username": "arrow",
@@ -185,11 +191,14 @@ export default function () {
                     "last": "Queen", "full": "Oliver Queen"
                 },
                 "__v": 0
-            },
+            }   ,
             {
                 "_id": "589e9e5ca8191700221b6a80",
                 "email": "barry@starzlabs.com",
+                "displayName": "Barry Allen",
+                "bio": "The Flash",
                 "createdDate": new Date("2016-09-20T00:00:00Z"),
+                "lastModifiedDate": new Date("2016-11-20T00:00:00Z"),
                 "admin": false,
                 "local": {
                     "username": "theflash",
@@ -205,7 +214,10 @@ export default function () {
             {
                 "_id": "589e9e5ca8191700221b6a81",
                 "email": "bruce@pantheon.com",
+                "displayName": "Bruce Wayne",
+                "bio": "The Hulk",
                 "createdDate": new Date("2016-10-28T00:00:00Z"),
+                "lastModifiedDate": new Date("2017-01-28T00:00:00Z"),
                 "admin": false,
                 "local": {
                     "username": "hulk",
@@ -221,7 +233,10 @@ export default function () {
             {
                 "_id": "58abc0924f049f00e8823d20",
                 "email": "dig@queenconsolidated.com",
+                "displayName": "John Diggle",
+                "bio": "Former soldier turned bodyguard",
                 "createdDate": new Date("2017-02-21T04:16:43.529Z"),
+                "lastModifiedDate": new Date("2017-03-21T04:16:43.529Z"),
                 "admin": false,
                 "local": {
                     "username": "spartan",
