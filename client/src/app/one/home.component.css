@@ -1,0 +1,38 @@
+.homeHeroChart {
+    background-color: white;
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: .25rem;
+    overflow: hidden;
+    position: relative;
+    width: 1000px;
+    height: 425px;
+    margin: 15px;
+}
+
+.homeHeroChartHeader {
+    padding: 15px;
+    border-bottom: 1px solid rgb(216, 221, 230);
+    height: 75px;
+}
+
+.homeHeroChartHeader .title {
+    display: inline;
+}
+
+.homeHeroChartHeader .timestamp {
+    padding-right: .5rem;
+    font-size: .75rem;
+    color: rgb(84, 105, 141);
+}
+
+.metricRow {
+    display: flex;
+    text-transform: uppercase;
+    margin: 15px 0 10px;
+}
+
+.metric {
+    align-self: center;
+    padding-right: 1.5rem;
+    min-width: 60px;
+}
