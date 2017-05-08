@@ -32,8 +32,12 @@
     width: 100%;
 }
 
+.login-container .error {
+    padding: 20px;
+}
+
 .input-container {
-    padding: 60px 20px;
+    padding: 35px 20px;
 }
 
 .input-container input {

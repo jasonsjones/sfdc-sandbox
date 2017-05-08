@@ -10,6 +10,7 @@ import { AuthService } from '../core/auth.service';
 export class LoginComponent implements OnInit { 
 
     loginForm: FormGroup;
+    failedLogin: boolean = false;
 
     constructor(private authService: AuthService) {}
 
@@ -25,10 +26,14 @@ export class LoginComponent implements OnInit {
         this.authService.login(model.username, model.password)
             .subscribe(data => {
                 if (data) {
+                    this.failedLogin = false;
                     console.log('Login successful...check localStorage');
                     console.log('need to redirect to somewhere else...');
+                } else {
+                    this.failedLogin = true;
+                    this.loginForm.reset();
+                    console.log(this.loginForm);
                 }
             });
-        this.loginForm.reset();
     }
 }
