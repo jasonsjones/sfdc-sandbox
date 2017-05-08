@@ -25,7 +25,7 @@
         </div>
         <nav class="slds-context-bar__secondary" role="navigation">
             <ul class="slds-grid">
-                <li class="slds-context-bar__item">
+                <li [routerLink]="['home']" routerLinkActive="slds-is-active" class="slds-context-bar__item">
                     <a href="javascript:void(0);" class="slds-context-bar__label-action" title="Home">
                         <span class="slds-truncate">Home</span>
                     </a>
@@ -38,6 +38,11 @@
                 <li class="slds-context-bar__item">
                     <a href="javascript:void(0);" class="slds-context-bar__label-action" title="Groups">
                         <span class="slds-truncate">Groups</span>
+                    </a>
+                </li>
+                <li [routerLink]="['people']" routerLinkActive="slds-is-active" class="slds-context-bar__item">
+                    <a href="javascript:void(0);" class="slds-context-bar__label-action" title="People">
+                        <span class="slds-truncate">People</span>
                     </a>
                 </li>
             </ul>

@@ -11,10 +11,21 @@ import { GlobalHeaderComponent } from './header/globalHeader.component';
 import { UserPopOverComponent } from './header/user-popover.component';
 import { GlobalNavComponent } from './navbar/globalNav.component';
 import { OneAppMainComponent } from './one/oneapp-main.component';
+import { HomeComponent } from './one/home.component';
+import { PeopleComponent } from './user/people.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-    { path: 'one', component: OneAppMainComponent, canActivate: [AuthGuard] },
+    {
+        path: 'one',
+        component: OneAppMainComponent,
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full'},
+            { path: 'home', component: HomeComponent },
+            { path: 'people', component: PeopleComponent }
+        ]
+    },
     { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
@@ -30,6 +41,8 @@ const appRoutes: Routes = [
         GlobalNavComponent,
         UserPopOverComponent,
         OneAppMainComponent,
+        HomeComponent,
+        PeopleComponent,
         LoginComponent
     ],
     providers: [ AuthService, AuthGuard ],
