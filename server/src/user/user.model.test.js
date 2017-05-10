@@ -6,9 +6,9 @@ import factory from './user.datafactory';
 const expect = chai.expect;
 const userFactory = factory();
 
-describe('User Model', () => {
+describe('User Model', function () {
 
-    describe('save()', () => {
+    describe('save()', function () {
 
         let mockUserData, mockUser, savedUser, error;
 
@@ -25,33 +25,33 @@ describe('User Model', () => {
             });
         });
 
-        after(() => {
+        after(function () {
             User.collection.drop();
         });
 
-        it('does not return an error', () => {
+        it('does not return an error', function () {
             expect(error).to.not.exist;
             expect(savedUser).to.exist;
         });
 
-        it('adds admin property as false by default', () => {
+        it('adds admin property as false by default', function () {
             expect(savedUser.admin).to.be.false;
         });
 
-        it('adds createdDate property by default', () => {
+        it('adds createdDate property by default', function () {
             expect(savedUser.createdDate).to.exist;
         });
 
-        it('adds lastModifiedDate property by default', () => {
+        it('adds lastModifiedDate property by default', function () {
             expect(savedUser.lastModifiedDate).to.exist;
         });
 
-        it('stores a hashed password', () => {
+        it('stores a hashed password', function () {
             expect(savedUser.local.password).to.not.equal(mockUserData.local.password);
         });
     });
 
-    describe('verifyPassword()', () => {
+    describe('verifyPassword()', function () {
         let mockUserData;
         let mockUser;
         before((done) => {
@@ -75,16 +75,16 @@ describe('User Model', () => {
             });
         });
 
-        after(() => {
+        after(function () {
             User.collection.drop();
         });
 
-        it('returns false with the wrong password', () => {
+        it('returns false with the wrong password', function () {
             let result = mockUser.verifyPassword('wrongP@ssword');
             expect(result).to.be.false;
         });
 
-        it('returns true with the correct password', () => {
+        it('returns true with the correct password', function () {
             let result = mockUser.verifyPassword('p@ssw0rd');
             expect(result).to.be.true;
         });

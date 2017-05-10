@@ -6,14 +6,14 @@ const expect = chai.expect;
 
 const userFactory = factory();
 
-describe('User Data Factory', () => {
-    it('exists', () => {
+describe('User Data Factory', function () {
+    it('exists', function () {
         expect(userFactory).to.exist;
     });
 
-    describe('getUsers()', () => {
+    describe('getUsers()', function () {
 
-        it('returns an array of users', () => {
+        it('returns an array of users', function () {
             expect(userFactory.getUsers()).to.be.an('array');
             let user = userFactory.getUsers()[0];
             expect(user).to.have.property('name');
@@ -25,8 +25,8 @@ describe('User Data Factory', () => {
 
     });
 
-    describe('mockUsersFromServer()', () => {
-        it('returns an array of users', () => {
+    describe('mockUsersFromServer()', function () {
+        it('returns an array of users', function () {
             expect(userFactory.mockUsersFromServer()).to.be.an('array');
             let user = userFactory.mockUsersFromServer()[0];
             expect(user).to.have.property('_id');

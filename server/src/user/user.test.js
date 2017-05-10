@@ -9,14 +9,14 @@ import app from '../config/app';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('User Route', () => {
+describe('User Route', function () {
     let aUserId;
 
-    describe('GET /users', () => {
+    describe('GET /users', function () {
 
         let response;
 
-        before((done) => {
+        before(function (done) {
             chai.request(app)
                 .get('/api/users')
                 .end((err, res) => {
@@ -29,24 +29,24 @@ describe('User Route', () => {
                 });
         });
 
-        it('returns json', () => {
+        it('returns json', function () {
             expect(response.status).to.equal(200);
             expect(response.type).to.eql('application/json');
         });
 
-        it('returns json with success property that is a boolean', () => {
+        it('returns json with success property that is a boolean', function () {
             expect(response.body).to.have.property('success').that.is.a('boolean');
         });
 
-        it('returns json with payload property that is an array', () => {
+        it('returns json with payload property that is an array', function () {
             expect(response.body).to.have.property('payload').that.is.an('array');
         });
     });
 
-    describe('GET /user/:id', () => {
+    describe('GET /user/:id', function () {
         let response;
 
-        before((done) => {
+        before(function (done) {
             if (aUserId) {
                 chai.request(app)
                     .get(`/api/user/${aUserId}`)
@@ -59,20 +59,20 @@ describe('User Route', () => {
         });
 
         if (aUserId) {
-            it('returns json', () => {
+            it('returns json', function () {
                 expect(response.status).to.equal(200);
                 expect(response.type).to.eql('application/json');
             });
 
-            it('returns json with success property that is a boolean', () => {
+            it('returns json with success property that is a boolean', function () {
                 expect(response.body).to.have.property('success').that.is.a('boolean');
             });
 
-            it('returns json with payload property that is an object', () => {
+            it('returns json with payload property that is an object', function () {
                 expect(response.body).to.have.property('payload').that.is.an('object');
             });
 
-            it('returns a payload that is the requested user', () => {
+            it('returns a payload that is the requested user', function () {
                 let user = response.body.payload;
                 expect(user).to.have.property('_id').that.is.an('string');
                 expect(user._id).to.equal(aUserId);
@@ -84,21 +84,21 @@ describe('User Route', () => {
 
     });
 
-    describe('integration tests to POST, PATCH, and DELETE a user', () => {
+    describe('integration tests to POST, PATCH, and DELETE a user', function () {
 
         let userId;
-        before(() => {
+        before(function () {
             UserDataService.setModel(TestUser, "TestUserModel");
         });
 
-        after(() => {
+        after(function () {
             UserDataService.setModel(User, "UserModel");
             TestUser.collection.drop();
         });
 
-        describe('POST /users', () => {
+        describe('POST /users', function () {
             let response;
-            before((done) => {
+            before(function (done) {
                 let dig = {
                         name: {
                             first: 'John',
@@ -123,20 +123,20 @@ describe('User Route', () => {
                     });
             });
 
-            it('returns json', () => {
+            it('returns json', function () {
                 expect(response.status).to.equal(201);
                 expect(response.type).to.eql('application/json');
             });
 
-            it('returns json with success property that is a boolean', () => {
+            it('returns json with success property that is a boolean', function () {
                 expect(response.body).to.have.property('success').that.is.a('boolean');
             });
 
-            it('returns json with payload property that is an object', () => {
+            it('returns json with payload property that is an object', function () {
                 expect(response.body).to.have.property('payload').that.is.an('object');
             });
 
-            it('returns a payload that is the saved user', () => {
+            it('returns a payload that is the saved user', function () {
                 let dig = response.body.payload;
                 expect(dig).to.have.property('_id').that.is.an('string');
                 expect(dig).to.have.property('email').that.is.an('string');
@@ -146,10 +146,10 @@ describe('User Route', () => {
 
         });
 
-        describe('PATCH /user/:id', () => {
+        describe('PATCH /user/:id', function () {
             let response;
             let patchInfo;
-            before((done) => {
+            before(function (done) {
                 patchInfo = {
                     email: 'diggle@queenconsolidated.com',
                 };
@@ -164,20 +164,20 @@ describe('User Route', () => {
                     });
             });
 
-            it('returns json', () => {
+            it('returns json', function () {
                 expect(response.status).to.equal(200);
                 expect(response.type).to.eql('application/json');
             });
 
-            it('returns json with success property that is a boolean', () => {
+            it('returns json with success property that is a boolean', function () {
                 expect(response.body).to.have.property('success').that.is.a('boolean');
             });
 
-            it('returns json with payload property that is an object', () => {
+            it('returns json with payload property that is an object', function () {
                 expect(response.body).to.have.property('payload').that.is.an('object');
             });
 
-            it('returns a payload that is the patched user', () => {
+            it('returns a payload that is the patched user', function () {
                 let dig = response.body.payload;
                 expect(dig).to.have.property('_id').that.is.an('string');
                 expect(dig).to.have.property('email').that.is.an('string');
@@ -188,9 +188,9 @@ describe('User Route', () => {
 
         });
 
-        describe('DELETE /user/:id', () => {
+        describe('DELETE /user/:id', function () {
             let response;
-            before((done) => {
+            before(function (done) {
 
                 chai.request(app)
                     .delete(`/api/user/${userId}`)
@@ -201,20 +201,20 @@ describe('User Route', () => {
                     });
             });
 
-            it('returns json', () => {
+            it('returns json', function () {
                 expect(response.status).to.equal(200);
                 expect(response.type).to.eql('application/json');
             });
 
-            it('returns json with success property that is a boolean', () => {
+            it('returns json with success property that is a boolean', function () {
                 expect(response.body).to.have.property('success').that.is.a('boolean');
             });
 
-            it('returns json with payload property that is an object', () => {
+            it('returns json with payload property that is an object', function () {
                 expect(response.body).to.have.property('payload').that.is.an('object');
             });
 
-            it('returns a payload that is the deleted user', () => {
+            it('returns a payload that is the deleted user', function () {
                 let dig = response.body.payload;
                 expect(dig).to.have.property('_id').that.is.an('string');
                 expect(dig).to.have.property('email').that.is.an('string');

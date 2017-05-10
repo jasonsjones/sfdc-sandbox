@@ -12,37 +12,37 @@ const expect = chai.expect;
 const userFactory = factory();
 const mockedUsers = userFactory.mockUsersFromServer();
 
-describe('Auth Data Service', () => {
-    describe('login()', () => {
+describe('Auth Data Service', function () {
+    describe('login()', function () {
         let UserMock;
         let verifyPasswordStub;
 
-        before(() => {
+        before(function () {
             verifyPasswordStub = sinon.stub(User.prototype, 'verifyPassword');
         });
 
-        after(() => {
+        after(function () {
             verifyPasswordStub.restore();
         });
 
-        beforeEach(() => {
+        beforeEach(function () {
             UserMock = sinon.mock(User);
             UserMock.expects('findOne').withArgs({'local.username': 'arrow'})
                 .chain('exec')
                 .resolves(new User(mockedUsers[3]));
         });
 
-        afterEach(() => {
+        afterEach(function () {
             UserMock.restore();
         });
 
-        it('returns a promise', () => {
+        it('returns a promise', function () {
             let arrow = {username: 'arrow', password: 'p@ssw0rd'};
             let promise = AuthDataService.login(arrow);
             expect(promise).to.be.a('Promise');
         });
 
-        it('resolves to an object with authenticed and payload properties', () => {
+        it('resolves to an object with authenticed and payload properties', function () {
             verifyPasswordStub.returns(true);
             let arrow = {username: 'arrow', password: 'p@ssw0rd'};
             let promise = AuthDataService.login(arrow);
@@ -56,7 +56,7 @@ describe('Auth Data Service', () => {
             });
         });
 
-        it('resolves to authenticated false with incorrect password', () => {
+        it('resolves to authenticated false with incorrect password', function () {
             verifyPasswordStub.returns(false);
             let arrow = {username: 'arrow', password: 'p@ssw0rd'};
             let promise = AuthDataService.login(arrow);
@@ -70,7 +70,7 @@ describe('Auth Data Service', () => {
             });
         });
 
-        it('resolves to null payload when user is not found', () => {
+        it('resolves to null payload when user is not found', function () {
             UserMock.expects('findOne').withArgs({'local.username': 'notHere'})
                 .chain('exec')
                 .resolves(null);
@@ -85,7 +85,7 @@ describe('Auth Data Service', () => {
             });
         });
 
-        it('resolves to null payload when username is not provided', () => {
+        it('resolves to null payload when username is not provided', function () {
             let noUser = {password: 'p@ssw0rd'};
             let promise = AuthDataService.login(noUser);
             return promise.then(data => {
@@ -97,7 +97,7 @@ describe('Auth Data Service', () => {
             });
         });
 
-        it('resolves to null payload when password is not provided', () => {
+        it('resolves to null payload when password is not provided', function () {
             let noUser = {username: 'notHere'};
             let promise = AuthDataService.login(noUser);
             return promise.then(data => {

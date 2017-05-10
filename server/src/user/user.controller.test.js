@@ -10,24 +10,24 @@ const expect = chai.expect;
 const userFactory = factory();
 const mockedUsers = userFactory.mockUsersFromServer();
 
-describe('User Controller', () => {
+describe('User Controller', function () {
     let req = {};
     let res = {};
 
-    beforeEach(() => {
+    beforeEach(function () {
         res = {
             json: sinon.spy(),
             status: sinon.spy()
         };
     });
 
-    describe('getUsers()', () => {
+    describe('getUsers()', function () {
         let stub;
-        beforeEach(() => {
+        beforeEach(function () {
             stub = sinon.stub(UserDataService, "getUsers");
         });
 
-        afterEach(() => {
+        afterEach(function () {
             stub.restore();
         });
 
@@ -51,10 +51,10 @@ describe('User Controller', () => {
         });
     });
 
-    describe('getUser()', () => {
+    describe('getUser()', function () {
         let stub;
         let arrowId = mockedUsers[3]._id;
-        beforeEach(() => {
+        beforeEach(function () {
             stub = sinon.stub(UserDataService, "getUser");
             req = {
                 params: {
@@ -63,7 +63,7 @@ describe('User Controller', () => {
             };
         });
 
-        afterEach(() => {
+        afterEach(function () {
             stub.restore();
         });
 
@@ -97,9 +97,9 @@ describe('User Controller', () => {
 
     });
 
-    describe('addUser()', () => {
+    describe('addUser()', function () {
         let addUserStub;
-        before(() => {
+        before(function () {
             req.body = {
                 name: {
                     first: 'Oliver',
@@ -114,11 +114,11 @@ describe('User Controller', () => {
             };
         })
 
-        beforeEach(() => {
+        beforeEach(function () {
             addUserStub = sinon.stub(UserDataService, "addUser");
         });
 
-        afterEach(() => {
+        afterEach(function () {
             addUserStub.restore();
         });
 
@@ -155,11 +155,11 @@ describe('User Controller', () => {
         });
     });
 
-    describe('patchUser()', () => {
+    describe('patchUser()', function () {
         let stub;
         let arrowId = mockedUsers[3]._id;
         let updatedArrow;
-        beforeEach(() => {
+        beforeEach(function () {
             stub = sinon.stub(UserDataService, 'patchUser');
             req = {
                 params: {
@@ -173,7 +173,7 @@ describe('User Controller', () => {
             updatedArrow.email = req.body.email;
         });
 
-        afterEach(() => {
+        afterEach(function () {
             stub.restore();
         });
 
@@ -207,10 +207,10 @@ describe('User Controller', () => {
         });
     });
 
-    describe('removeUser()', () => {
+    describe('removeUser()', function () {
         let stub;
         let arrowId = mockedUsers[3]._id;
-        beforeEach(() => {
+        beforeEach(function () {
             stub = sinon.stub(UserDataService, "removeUser");
             req = {
                 params: {
@@ -219,7 +219,7 @@ describe('User Controller', () => {
             };
         });
 
-        afterEach(() => {
+        afterEach(function () {
             stub.restore();
         });
 

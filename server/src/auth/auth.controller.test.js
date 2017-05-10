@@ -12,20 +12,20 @@ const userFactory = factory();
 const mockedUsers = userFactory.mockUsersFromServer();
 const mockedToken = tokenFactory().getToken();
 
-describe('Auth Controller', () => {
+describe('Auth Controller', function () {
     let req = {};
     let res = {};
 
-    beforeEach(() => {
+    beforeEach(function () {
         res = {
             json: sinon.spy(),
             status: sinon.spy()
         };
     });
 
-    describe('login()', () => {
+    describe('login()', function () {
         let stub;
-        beforeEach(() => {
+        beforeEach(function () {
             stub = sinon.stub(AuthDataService, "login");
             req = {
                 body: {
@@ -35,7 +35,7 @@ describe('Auth Controller', () => {
             };
         });
 
-        afterEach(() => {
+        afterEach(function () {
             stub.restore();
         });
 

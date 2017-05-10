@@ -11,27 +11,27 @@ const expect = chai.expect;
 const userFactory = factory();
 const mockedUsers = userFactory.mockUsersFromServer();
 
-describe('User Data Service', () => {
+describe('User Data Service', function () {
 
-    describe('getUsers()', () => {
+    describe('getUsers()', function () {
        let UserMock;
-        beforeEach(() => {
+        beforeEach(function () {
             UserMock = sinon.mock(User);
             UserMock.expects('find').withArgs({})
                 .chain('exec')
                 .resolves(mockedUsers);
         });
 
-        afterEach(() => {
+        afterEach(function () {
             UserMock.restore();
         });
 
-        it('returns a promise', () => {
+        it('returns a promise', function () {
             let promise = UserDataService.getUsers();
             expect(promise).to.be.a('Promise');
         });
 
-        it('resolves to an array of users', () => {
+        it('resolves to an array of users', function () {
             var promise = UserDataService.getUsers();
             return promise.then(data => {
                 expect(data).to.be.an('array');
@@ -39,11 +39,11 @@ describe('User Data Service', () => {
         });
     });
 
-    describe('getUser()', () => {
+    describe('getUser()', function () {
         let UserMock;
         let arrowId;
 
-        beforeEach(() => {
+        beforeEach(function () {
             arrowId = mockedUsers[3]._id;
             UserMock = sinon.mock(User);
             UserMock.expects('findById').withArgs(arrowId)
@@ -51,16 +51,16 @@ describe('User Data Service', () => {
                 .resolves(mockedUsers[3]);
         });
 
-        afterEach(() => {
+        afterEach(function () {
             UserMock.restore();
         });
 
-        it('returns a promise', () => {
+        it('returns a promise', function () {
             let promise = UserDataService.getUser(arrowId);
             expect(promise).to.be.a('Promise');
         });
 
-        it('resolves to a user', () => {
+        it('resolves to a user', function () {
             var promise = UserDataService.getUser(arrowId);
             return promise.then(data => {
                 expect(data).to.be.an('object');
@@ -72,7 +72,7 @@ describe('User Data Service', () => {
             });
         });
 
-        it('rejects with error when user does not exit', () => {
+        it('rejects with error when user does not exit', function () {
             let badUserId = '589e9e5ca8101500221a6b5f';
             UserMock.expects('findById').withArgs(badUserId)
                 .chain('exec')
@@ -90,21 +90,21 @@ describe('User Data Service', () => {
 
     });
 
-    describe('add, patch, and remove user', () => {
+    describe('add, patch, and remove user', function () {
             let userId;
 
-            before(() => {
+            before(function () {
                 UserDataService.setModel(TestUser, "TestUserModel");
             });
 
-            after(() => {
+            after(function () {
                 UserDataService.setModel(User, "UserModel");
                 TestUser.collection.drop();
             });
 
-        describe('addUser()', () => {
+        describe('addUser()', function () {
             let user;
-            before(() => {
+            before(function () {
                 user = {
                     name: {
                         first: 'Oliver',
@@ -118,7 +118,7 @@ describe('User Data Service', () => {
                 };
             });
 
-            it('returns a promise that resolves to the saved user', () => {
+            it('returns a promise that resolves to the saved user', function () {
                 let promise = UserDataService.addUser(user);
                 expect(promise).to.be.a('Promise');
                 return promise.then(user => {
@@ -132,15 +132,15 @@ describe('User Data Service', () => {
 
         });
 
-        describe('patchUser()', () => {
+        describe('patchUser()', function () {
             let patchUser;
-            before(() => {
+            before(function () {
                 patchUser = {
                     email: 'arrow@queenconsolidated.com',
                 };
             });
 
-            it('returns a promise that resolves to the patched user', () => {
+            it('returns a promise that resolves to the patched user', function () {
                 let promise = UserDataService.patchUser(userId, patchUser);
                 expect(promise).to.be.a('Promise');
                 return promise.then(user => {
@@ -154,8 +154,8 @@ describe('User Data Service', () => {
 
         });
 
-        describe('removeUser()', () => {
-            it('returns a promise that resolves to the removed user', () => {
+        describe('removeUser()', function () {
+            it('returns a promise that resolves to the removed user', function () {
                 let promise = UserDataService.removeUser(userId);
                 expect(promise).to.be.a('Promise');
                 return promise.then(user => {
