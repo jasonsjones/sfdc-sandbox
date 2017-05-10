@@ -12,7 +12,7 @@ describe('User Model', function () {
 
         let mockUserData, mockUser, savedUser, error;
 
-        before((done) => {
+        before(function (done) {
             mockUserData = userFactory.getUsers()[0];
             delete mockUserData.createdDate;
             delete mockUserData.admin;
@@ -54,7 +54,7 @@ describe('User Model', function () {
     describe('verifyPassword()', function () {
         let mockUserData;
         let mockUser;
-        before((done) => {
+        before(function (done) {
             mockUserData = {
                 name: {
                     first: 'Oliver',
