@@ -35,6 +35,7 @@ describe('User Data Service', function () {
             var promise = UserDataService.getUsers();
             return promise.then(data => {
                 expect(data).to.be.an('array');
+                expect(data.length).to.equal(mockedUsers.length);
             });
         });
     });
