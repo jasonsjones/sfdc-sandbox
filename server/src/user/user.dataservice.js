@@ -2,10 +2,11 @@ const debug = require('debug')('sfdc:dataservice');
 import Factory from './user.datafactory';
 import { User } from './user.model';
 
-let UserModel = User;
+let UserModel;
+setModel(User);
 
 function setModel(model, modelName) {
-    debug(`**** switching user model to ${modelName}`);
+    debug(`**** assigning user model to ${modelName}`);
     UserModel = model;
 }
 
