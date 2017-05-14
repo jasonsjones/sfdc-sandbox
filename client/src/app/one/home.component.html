@@ -1,32 +1,38 @@
-<div class="homeHeroChart">
-    <div>
-        <div class="homeHeroChartHeader">
-            <h2 class="slds-text-heading--small title">Quarterly Performance</h2>
-            <span class="slds-text-title slds-m-left--small">Week View</span>
-            <div class="slds-grid slds-grid--vertical-align-center slds-float--right">
-                <span class="timestamp">As of Today 9:14:13 AM</span>
-                <button class="slds-button slds-button--icon-border" type="button">
-                    <svg class="slds-button__icon">
-                        <use xlink:href="node_modules/@salesforce-ux/design-system/assets/icons/utility-sprite/svg/symbols.svg#refresh"></use>
-                    </svg>
-                </button>
+<div class="slds-grid">
+    <div class="homeHeroChart slds-col">
+        <div>
+            <div class="homeHeroChartHeader">
+                <h2 class="slds-text-heading--small title">Quarterly Performance</h2>
+                <span class="slds-text-title slds-m-left--small">Week View</span>
+                <div class="slds-grid slds-grid--vertical-align-center slds-float--right">
+                    <span class="timestamp">As of Today 9:14:13 AM</span>
+                    <button class="slds-button slds-button--icon-border" type="button">
+                        <svg class="slds-button__icon">
+                            <use xlink:href="node_modules/@salesforce-ux/design-system/assets/icons/utility-sprite/svg/symbols.svg#refresh"></use>
+                        </svg>
+                    </button>
+                </div>
+                <ul class="metricRow">
+                    <li class="metric">
+                        <span class="metricLabel">Closed</span>
+                        <span class="metricAmount">$0</span>
+                    </li>
+                    <li class="metric">
+                        <span class="metricLabel">Open (>70%)</span>
+                        <span class="metricAmount">$0</span>
+                    </li>
+                    <li class="metric">
+                        <span class="metricLabel">Goal</span>
+                        <span class="metricAmount">--</span>
+                    </li>
+                </ul>
             </div>
-            <ul class="metricRow">
-                <li class="metric">
-                    <span class="metricLabel">Closed</span>
-                    <span class="metricAmount">$0</span>
-                </li>
-                <li class="metric">
-                    <span class="metricLabel">Open</span>
-                    <span class="metricAmount">(>70%)</span>
-                </li>
-                <li class="metric">
-                    <span class="metricLabel">Goal</span>
-                    <span class="metricAmount">--</span>
-                </li>
-            </ul>
+            <div class="chartBody">
+            </div>
         </div>
-        <div class="chartBody">
-        </div>
+    </div>
+    <div class="homeAssistant slds-col">
+        Assistant
+        <p>Nothing needs your attention right now. Check back later.</p>
     </div>
 </div>
