@@ -51,7 +51,7 @@ export class AuthService {
         this.router.navigate(['/login']);
     }
 
-    private generateCurrentUser(user): IUser {
+    private generateCurrentUser(user: any): IUser {
         return {
             firstname: user.firstName,
             lastname: user.lastName,

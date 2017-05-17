@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    login(model): void {
+    login(model: any): void {
         this.authService.login(model.username, model.password)
             .subscribe(data => {
                 if (data) {
