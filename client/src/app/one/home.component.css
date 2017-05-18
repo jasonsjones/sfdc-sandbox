@@ -1,10 +1,16 @@
+
+.right-col .assist-text {
+    font-size: .85rem;
+    color: rgb(84, 105, 141);
+}
+
 .homeHeroChart {
     background-color: white;
     border: 1px solid rgb(216, 221, 230);
     border-radius: .25rem;
     overflow: hidden;
     position: relative;
-    width: 800px;
+    width: 1000px;
     height: 425px;
     margin: 15px;
 }
@@ -25,9 +31,19 @@
     color: rgb(84, 105, 141);
 }
 
+.homeHeroChartHeader .metricLabel {
+    font-size: .75rem;
+    color: rgb(84, 105, 141);
+    text-transform: uppercase;
+    padding-right: .5rem;
+}
+
+.homeHeroChartHeader .metricAmount {
+    font-size: 1rem;
+}
+
 .metricRow {
     display: flex;
-    text-transform: uppercase;
     margin: 15px 0 10px;
 }
 
@@ -35,4 +51,8 @@
     align-self: center;
     padding-right: 1.5rem;
     min-width: 60px;
+}
+
+.chartBody .message {
+    margin-top: 15%;
 }
