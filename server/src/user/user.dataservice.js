@@ -24,7 +24,7 @@ function getUsers() {
 
 function getUser(id) {
     return new Promise(function (resolve, reject) {
-        UserModel.findById(id).exec()
+        UserModel.findById(id, '-local.password').exec()
             .then(user => {
                 resolve(user);
             })
