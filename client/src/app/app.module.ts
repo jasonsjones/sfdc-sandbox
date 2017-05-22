@@ -13,6 +13,7 @@ import { GlobalNavComponent } from './navbar/globalNav.component';
 import { OneAppMainComponent } from './one/oneapp-main.component';
 import { HomeComponent } from './one/home.component';
 import { PeopleComponent } from './user/people.component';
+import { PeopleService } from './user/people.service';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
         PeopleComponent,
         LoginComponent
     ],
-    providers: [ AuthService, AuthGuard ],
+    providers: [ AuthService, AuthGuard, PeopleService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

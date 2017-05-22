@@ -22,18 +22,36 @@
         </div>
     </div>
     <div class="slds-card__body">
-        <div class="slds-grid slds-wrap">
-            <div class="slds-col">
-                <div class="slds-box">
-                    <p>People component</p>
-                </div>
-            </div>
-            <div class="slds-col">
-                <div class="slds-box">
-                    <p>People component</p>
-                </div>
-            </div>
-        </div>
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Name">Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Username">Username</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Email">Email</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="slds-hint-parent" *ngFor="let user of people">
+                    <th scope="row">
+                        <div class="slds-truncate" title="{{user.name.full">
+                            <a href="javascript:void(0);">{{user.name.full}}</a>
+                        </div>
+                    </th>
+                    <td>
+                        <div class="slds-truncate" title="{{user.local.username">{{user.local.username}}</div>
+                    </td>
+                    <td>
+                        <div class="slds-truncate" title="{{user.email}}">{{user.email}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <footer class="slds-card__footer">
         <a href="javascript:void(0);">View All
