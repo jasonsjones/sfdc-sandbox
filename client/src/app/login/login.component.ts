@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
             .subscribe(data => {
                 if (data) {
                     this.failedLogin = false;
-                    console.log('Login successful...check localStorage');
-                    console.log('need to redirect to somewhere else...');
                 } else {
                     this.failedLogin = true;
                     this.loginForm.reset();
