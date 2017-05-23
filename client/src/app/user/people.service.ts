@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PeopleService {
-    private baseUrl: string = 'http://localhost/api';
+    private baseUrl: string = 'http://localhost:3000/api';
 
     constructor(private http: Http) {}
 
