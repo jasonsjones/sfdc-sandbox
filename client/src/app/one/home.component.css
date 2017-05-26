@@ -16,9 +16,9 @@
 }
 
 .homeHeroChartHeader {
-    padding: 15px;
+    padding: 10px;
     border-bottom: 1px solid rgb(216, 221, 230);
-    height: 75px;
+    height: 80px;
 }
 
 .homeHeroChartHeader .title {
