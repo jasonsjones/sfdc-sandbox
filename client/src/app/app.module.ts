@@ -13,6 +13,7 @@ import { GlobalNavComponent } from './navbar/globalNav.component';
 import { OneAppMainComponent } from './one/oneapp-main.component';
 import { HomeComponent } from './one/home.component';
 import { PeopleComponent } from './user/people.component';
+import { UserProfile } from './user/user-profile.component';
 import { PeopleService } from './user/people.service';
 import { LoginComponent } from './login/login.component';
 
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full'},
             { path: 'home', component: HomeComponent },
-            { path: 'people', component: PeopleComponent }
+            { path: 'people', component: PeopleComponent },
+            { path: 'profile/:id', component: UserProfile }
         ]
     },
     { path: 'login', component: LoginComponent },
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
         OneAppMainComponent,
         HomeComponent,
         PeopleComponent,
+        UserProfile,
         LoginComponent
     ],
     providers: [ AuthService, AuthGuard, PeopleService ],
