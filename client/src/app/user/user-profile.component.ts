@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PeopleService } from './people.service';
 
 @Component({
-    templateUrl: 'src/app/user/user-profile.component.html'
+    templateUrl: 'src/app/user/user-profile.component.html',
+    styles: ['.profile-image { width: 180px; border-radius: 50%; ']
 })
 export class UserProfile implements OnInit { 
 
