@@ -1,4 +1,5 @@
 const debug = require('debug')('sfdc:dataservice');
+const faker = require('faker');
 import Factory from './user.datafactory';
 import { User } from './user.model';
 
@@ -33,6 +34,21 @@ function getUser(id) {
             });
     });
 
+}
+
+function getRandomUser() {
+    return Promise.resolve(
+        {
+            id: faker.random.number(),
+            firstName: faker.name.firstName(),
+            lastName: faker.name.lastName(),
+            displayName: faker.name.findName(),
+            email: faker.internet.email(),
+            username: faker.internet.userName(),
+            avatar: 'male4.png',
+            admin: faker.random.boolean()
+        }
+    );
 }
 
 function addUser(user) {
@@ -116,5 +132,5 @@ function seedUsersInDb(noUsersInDb) {
     });
 }
 
-export { addUser, getUsers, getUser, patchUser, removeUser,
+export { addUser, getUsers, getUser, getRandomUser, patchUser, removeUser,
          seedDatabase, seedUsersInDb, setModel }

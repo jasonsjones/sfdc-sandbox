@@ -91,6 +91,26 @@ describe('User Data Service', function () {
 
     });
 
+    describe.only('getRandomUser()', function () {
+
+        it('returns a promise', function () {
+            let promise = UserDataService.getRandomUser();
+            expect(promise).to.be.a('Promise');
+        });
+
+        it('resolves to a user', function () {
+            var promise = UserDataService.getRandomUser();
+            return promise.then(data => {
+                expect(data).to.be.an('object');
+                expect(data).to.have.property('email');
+                expect(data).to.have.property('firstName');
+                expect(data).to.have.property('lastName');
+                expect(data).to.have.property('displayName');
+                expect(data).to.have.property('username');
+            });
+        });
+    });
+
     describe('add, patch, and remove user', function () {
             let userId;
 
