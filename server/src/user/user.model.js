@@ -66,6 +66,13 @@ userSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+userSchema.methods.follow = function (id) {
+    if (this.following.indexOf(id) === -1) {
+        this.following.push(id);
+    }
+    return this.save();
+}
+
 userSchema.methods.toAuthJSON = function () {
     return {
         id: this._id,

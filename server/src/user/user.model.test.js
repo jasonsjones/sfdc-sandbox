@@ -52,10 +52,9 @@ describe('User Model', function () {
     });
 
     describe('verifyPassword()', function () {
-        let mockUserData;
         let mockUser;
         before(function (done) {
-            mockUserData = {
+            var mockUserData = {
                 name: {
                     first: 'Oliver',
                     last: 'Queen'
@@ -89,4 +88,52 @@ describe('User Model', function () {
             expect(result).to.be.true;
         });
     });
+
+    describe.only('follow()', function () {
+        let theUser;
+        let idToFollow;
+        before(function (done) {
+            let user = userFactory.getUsers()[0];
+            let userToFollow = userFactory.getUsers()[1];
+            Promise.all([addUser(user), addUser(userToFollow)])
+                .then(function (response) {
+                    theUser = response[0];
+                    idToFollow = response[1]._id;
+                    done();
+                });
+        });
+
+        after(function () {
+            User.collection.drop();
+        });
+
+        it('adds the id of the user to follow', function () {
+            theUser.follow(idToFollow);
+            expect(theUser.following.length).to.equal(1);
+            expect(theUser.following[0]).to.equal(idToFollow);
+        });
+
+        it('does not add a user if already following', function () {
+            theUser.follow(idToFollow);
+            theUser.follow(idToFollow);
+            expect(theUser.following.length).to.equal(1);
+            expect(theUser.following[0]).to.equal(idToFollow);
+        });
+
+    });
 });
+
+function addUser(userData) {
+    delete userData.createdDate;
+    delete userData.lastModifiedDate;
+    return new Promise(function (resolve, reject) {
+        new User(userData).save(function (err, user) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(user);
+        })
+    });
+
+}
