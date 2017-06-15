@@ -91,7 +91,7 @@ describe('User Data Service', function () {
 
     });
 
-    describe.only('getRandomUser()', function () {
+    describe('getRandomUser()', function () {
 
         it('returns a promise', function () {
             let promise = UserDataService.getRandomUser();
