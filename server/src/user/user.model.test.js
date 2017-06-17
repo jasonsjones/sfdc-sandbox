@@ -89,7 +89,7 @@ describe('User Model', function () {
         });
     });
 
-    describe.only('follow()', function () {
+    describe.only('follow() and unfollow()', function () {
         let theUser;
         let idToFollow;
         before(function (done) {
@@ -118,6 +118,14 @@ describe('User Model', function () {
             theUser.follow(idToFollow);
             expect(theUser.following.length).to.equal(1);
             expect(theUser.following[0]).to.equal(idToFollow);
+        });
+
+        it('unfollows a user that was previously followed', function () {
+            theUser.follow(idToFollow);
+            expect(theUser.following.length).to.equal(1);
+
+            theUser.unfollow(idToFollow);
+            expect(theUser.following.length).to.equal(0);
         });
 
     });

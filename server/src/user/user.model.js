@@ -73,6 +73,14 @@ userSchema.methods.follow = function (id) {
     return this.save();
 }
 
+userSchema.methods.unfollow = function (id) {
+    let idx = this.following.indexOf(id);
+    if (idx > -1) {
+        this.following.splice(idx, 1);
+        return this.save();
+    }
+}
+
 userSchema.methods.toAuthJSON = function () {
     return {
         id: this._id,
