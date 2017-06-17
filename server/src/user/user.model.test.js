@@ -128,6 +128,14 @@ describe('User Model', function () {
             expect(theUser.following.length).to.equal(0);
         });
 
+        it('does not unfollow a user if not previously followed', function () {
+            theUser.follow(idToFollow);
+            expect(theUser.following.length).to.equal(1);
+
+            theUser.unfollow('589e9e5ca8191700221b6a7e');
+            expect(theUser.following.length).to.equal(1);
+        });
+
     });
 });
 
