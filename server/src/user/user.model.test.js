@@ -89,10 +89,10 @@ describe('User Model', function () {
         });
     });
 
-    describe.only('follow() and unfollow()', function () {
+    describe('follow() and unfollow()', function () {
         let theUser;
         let idToFollow;
-        before(function (done) {
+        beforeEach(function (done) {
             let user = userFactory.getUsers()[0];
             let userToFollow = userFactory.getUsers()[1];
             Promise.all([addUser(user), addUser(userToFollow)])
@@ -103,7 +103,7 @@ describe('User Model', function () {
                 });
         });
 
-        after(function () {
+        afterEach(function () {
             User.collection.drop();
         });
 
