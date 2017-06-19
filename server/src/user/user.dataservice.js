@@ -89,6 +89,19 @@ function removeUser(id) {
     });
 }
 
+function followUser(id, idOfUserToFollow) {
+    return new Promise(function (resolve, reject) {
+        UserModel.findById(id, '-local.password').exec()
+            .then(user => {
+                user.follow(idOfUserToFollow);
+                resolve(user);
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}
+
 function seedDatabase() {
     return new Promise(function (resolve, reject) {
         UserModel.find({}).exec()
@@ -132,5 +145,5 @@ function seedUsersInDb(noUsersInDb) {
     });
 }
 
-export { addUser, getUsers, getUser, getRandomUser, patchUser, removeUser,
+export { addUser, followUser, getUsers, getUser, getRandomUser, patchUser, removeUser,
          seedDatabase, seedUsersInDb, setModel }

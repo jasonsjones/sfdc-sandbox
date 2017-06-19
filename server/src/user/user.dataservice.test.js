@@ -191,4 +191,36 @@ describe('User Data Service', function () {
         });
     });
 
+    describe('followUser()', function () {
+        let UserMock;
+        let arrowId;
+        let supermanId;
+
+        beforeEach(function () {
+            arrowId = mockedUsers[3]._id;
+            supermanId = mockedUsers[0]._id;
+            UserMock = sinon.mock(User);
+            UserMock.expects('findById').withArgs(arrowId)
+                .chain('exec')
+                .resolves(new TestUser(mockedUsers[3]));
+        });
+
+        afterEach(function () {
+            UserMock.restore();
+        });
+
+        it('returns a promise', function () {
+            let stub = sinon.stub(TestUser.prototype, 'follow');
+            let promise = UserDataService.followUser(arrowId, supermanId);
+            expect(promise).to.be.a('Promise');
+            return promise.then(user => {
+                expect(user).to.exist;
+                stub.restore();
+            }, err => {
+                expect(err).to.be.null;
+            })
+        });
+
+    });
+
 });
