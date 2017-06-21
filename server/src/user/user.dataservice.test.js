@@ -195,11 +195,13 @@ describe('User Data Service', function () {
         let UserMock;
         let arrowId;
         let supermanId;
+        let followStub;
 
         beforeEach(function () {
             arrowId = mockedUsers[3]._id;
             supermanId = mockedUsers[0]._id;
             UserMock = sinon.mock(User);
+            followStub = sinon.stub(TestUser.prototype, 'follow');
             UserMock.expects('findById').withArgs(arrowId)
                 .chain('exec')
                 .resolves(new TestUser(mockedUsers[3]));
@@ -207,15 +209,24 @@ describe('User Data Service', function () {
 
         afterEach(function () {
             UserMock.restore();
+            followStub.restore();
         });
 
         it('returns a promise', function () {
-            let stub = sinon.stub(TestUser.prototype, 'follow');
             let promise = UserDataService.followUser(arrowId, supermanId);
             expect(promise).to.be.a('Promise');
             return promise.then(user => {
                 expect(user).to.exist;
-                stub.restore();
+            }, err => {
+                expect(err).to.be.null;
+            })
+        });
+
+        it('calls User.follow()', function () {
+            let promise = UserDataService.followUser(arrowId, supermanId);
+            return promise.then(user => {
+                expect(user).to.exist;
+                expect(followStub.calledOnce).to.be.true
             }, err => {
                 expect(err).to.be.null;
             })
