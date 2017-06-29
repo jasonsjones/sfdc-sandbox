@@ -79,4 +79,18 @@ function removeUser(req, res, next) {
         });
 }
 
-export { addUser, getUsers, getUser, patchUser, removeUser }
+function followUser(req, res, next) {
+    UserDataService.followUser(req.params.id, req.params.userIdToFollow)
+        .then(user => {
+            res.json({
+                success: true,
+                payload: user
+            });
+            next();
+        })
+        .catch(err => {
+            next(err);
+        });
+}
+
+export { addUser, getUsers, getUser, patchUser, removeUser, followUser }
